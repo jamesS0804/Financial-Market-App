@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "SessionsControllers", type: :request do
-  let(:user) { User.create(email: 'user@example.com', password: 'password', first_name: 'john', last_name: 'doe', role: :trader) }
+  let(:user) { User.create(email: 'user@example.com', password: 'password', first_name: 'john', last_name: 'doe', role: 'trader', confirmed_at: Date.today) }
 
-  before { post '/login', params: { user: { email: user.email, password: user.password, first_name: user.first_name, last_name: user.last_name, role: user.role } } }
+  before { post '/login', params: { user: { email: user.email, password: user.password } } }
 
   describe 'POST sign_in' do
     context 'when the user logged in and is authenticated' do
@@ -48,5 +48,9 @@ RSpec.describe "SessionsControllers", type: :request do
         expect(json_response['message']).to eq("Invalid authentication token.")
       end
     end
+  end
+
+  after do
+    User.destroy_all
   end
 end
