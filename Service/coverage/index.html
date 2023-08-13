@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-08-13T19:10:21+08:00">2023-08-13T19:10:21+08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-08-13T19:23:37+08:00">2023-08-13T19:23:37+08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="yellow">
-  85.03%
+  85.71%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.9
+         0.92
        </span>
     </span> hits/line
     )
@@ -39,15 +39,15 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>15</b> files in total.
+    <b>16</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>147</b> relevant lines,
-    <span class="green"><b>125</b> lines covered</span> and
+    <b>154</b> relevant lines,
+    <span class="green"><b>132</b> lines covered</span> and
     <span class="red"><b>22</b> lines missed. </span>
     (<span class="yellow">
-  85.03%
+  85.71%
 </span>
 )
   </div>
@@ -83,12 +83,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#9f19304a90376d537997caec639bb8dacb5604ec" class="src_link" title="app/controllers/users/sessions_controller.rb">app/controllers/users/sessions_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">47.37 %</td>
-            <td class="cell--number">47</td>
-            <td class="cell--number">19</td>
-            <td class="cell--number">9</td>
+            <td class="red strong cell--number t-file__coverage">50.00 %</td>
+            <td class="cell--number">48</td>
+            <td class="cell--number">20</td>
             <td class="cell--number">10</td>
-            <td class="cell--number">0.58</td>
+            <td class="cell--number">10</td>
+            <td class="cell--number">0.65</td>
             
           </tr>
         
@@ -115,11 +115,22 @@
           </tr>
         
           <tr class="t-file">
+            <td class="strong t-file__name"><a href="#b9fceb641ce829ef1a8312f40fb1df75bb0e0b6f" class="src_link" title="config/application.env">config/application.env</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
             <td class="strong t-file__name"><a href="#55718029b779aa043637b70a066397d57f3c0909" class="src_link" title="config/application.rb">config/application.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">53</td>
-            <td class="cell--number">22</td>
-            <td class="cell--number">22</td>
+            <td class="cell--number">56</td>
+            <td class="cell--number">25</td>
+            <td class="cell--number">25</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -139,9 +150,9 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#289ffe99ff00502f88ca2fe87763feefa6f84228" class="src_link" title="config/environment.rb">config/environment.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">8</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -310,7 +321,7 @@
     <h3>app/controllers/users/sessions_controller.rb</h3>
     <h4>
       <span class="red">
-  47.37%
+  50.0%
 </span>
 
       lines covered
@@ -319,8 +330,8 @@
     
 
     <div class="t-line-summary">
-      <b>19</b> relevant lines.
-      <span class="green"><b>9</b> lines covered</span> and
+      <b>20</b> relevant lines.
+      <span class="green"><b>10</b> lines covered</span> and
       <span class="red"><b>10</b> lines missed.</span>
     </div>
 
@@ -591,18 +602,18 @@
 
             
 
-            <code class="ruby">      jwt_payload = JWT.decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[1], ENV[&#39;DEVISE_JWT_SECRET_KEY&#39;], true, algorithm: &#39;HS256&#39;, verify_jti: true)</code>
+            <code class="ruby">      puts request.headers[&#39;Authorization&#39;]</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="25">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="25">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">      user_id = jwt_payload[0][&#39;sub&#39;]</code>
+            
+
+            <code class="ruby">      jwt_payload = JWT.decode(request.headers[&#39;Authorization&#39;].split(&#39; &#39;)[1], ENV[&#39;DEVISE_JWT_SECRET_KEY&#39;], true, algorithm: &#39;HS256&#39;, verify_jti: true)</code>
           </li>
         </div>
       
@@ -613,29 +624,29 @@
 
             
 
+            <code class="ruby">      user_id = jwt_payload[0][&#39;sub&#39;]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="27">
+            
+            
+
+            
+
             <code class="ruby">      current_user = User.find(user_id)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="never" data-hits="" data-linenumber="28">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="28">
-            
-            
-
-            
-
-            <code class="ruby">      if current_user</code>
           </li>
         </div>
       
@@ -646,12 +657,23 @@
 
             
 
+            <code class="ruby">      if current_user</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="30">
+            
+            
+
+            
+
             <code class="ruby">        sign_out(current_user)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
@@ -662,7 +684,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="31">
+          <li class="missed" data-hits="0" data-linenumber="32">
             
             
 
@@ -673,7 +695,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="never" data-hits="" data-linenumber="33">
             
             
 
@@ -684,7 +706,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
+          <li class="never" data-hits="" data-linenumber="34">
             
             
 
@@ -695,7 +717,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="34">
+          <li class="never" data-hits="" data-linenumber="35">
             
             
 
@@ -706,7 +728,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="never" data-hits="" data-linenumber="36">
             
             
 
@@ -717,7 +739,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="36">
+          <li class="covered" data-hits="2" data-linenumber="37">
             <span class="hits">2</span>
             
 
@@ -728,7 +750,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="37">
+          <li class="covered" data-hits="1" data-linenumber="38">
             <span class="hits">1</span>
             
 
@@ -739,7 +761,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="38">
+          <li class="never" data-hits="" data-linenumber="39">
             
             
 
@@ -750,7 +772,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="39">
+          <li class="never" data-hits="" data-linenumber="40">
             
             
 
@@ -761,7 +783,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="40">
+          <li class="never" data-hits="" data-linenumber="41">
             
             
 
@@ -772,7 +794,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="41">
+          <li class="never" data-hits="" data-linenumber="42">
             
             
 
@@ -783,7 +805,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="43">
             
             
 
@@ -794,7 +816,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="43">
+          <li class="never" data-hits="" data-linenumber="44">
             
             
 
@@ -805,7 +827,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="44">
+          <li class="covered" data-hits="1" data-linenumber="45">
             <span class="hits">1</span>
             
 
@@ -816,7 +838,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="45">
+          <li class="missed" data-hits="0" data-linenumber="46">
             
             
 
@@ -827,7 +849,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
+          <li class="never" data-hits="" data-linenumber="47">
             
             
 
@@ -838,7 +860,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="47">
+          <li class="never" data-hits="" data-linenumber="48">
             
             
 
@@ -1058,6 +1080,48 @@
 </div>
 
       
+        <div class="source_table" id="b9fceb641ce829ef1a8312f40fb1df75bb0e0b6f">
+  <div class="header">
+    <h3>config/application.env</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>1</b> relevant lines.
+      <span class="green"><b>1</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="1">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">ENV[&#39;DEVISE_JWT_SECRET_KEY&#39;] = &quot;u8olvZ6XmVqMYrj17P7bFdK5ixvCFz3URyRZmlUIt2O21oJCJK0OcsTah0UeekuI&quot; </code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
         <div class="source_table" id="55718029b779aa043637b70a066397d57f3c0909">
   <div class="header">
     <h3>config/application.rb</h3>
@@ -1072,8 +1136,8 @@
     
 
     <div class="t-line-summary">
-      <b>22</b> relevant lines.
-      <span class="green"><b>22</b> lines covered</span> and
+      <b>25</b> relevant lines.
+      <span class="green"><b>25</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1646,7 +1710,40 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
+          <li class="covered" data-hits="1" data-linenumber="52">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    config.session_store :cookie_store, key: &#39;_interslice_session&#39;, expire_after: 30.minutes.to_i</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="53">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    config.middleware.use ActionDispatch::Cookies</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="54">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    config.middleware.use config.session_store, config.session_options</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="55">
             
             
 
@@ -1657,7 +1754,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
+          <li class="never" data-hits="" data-linenumber="56">
             
             
 
@@ -1761,8 +1858,8 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>4</b> relevant lines.
+      <span class="green"><b>4</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1807,7 +1904,40 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="covered" data-hits="1" data-linenumber="4">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">app_test = File.join(Rails.root, &#39;config&#39;, &#39;application.env&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="5">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">load(app_test) if File.exist?(app_test)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="7">
             
             
 
@@ -1818,7 +1948,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
+          <li class="covered" data-hits="1" data-linenumber="8">
             <span class="hits">1</span>
             
 
@@ -6229,7 +6359,7 @@
 
             
 
-            <code class="ruby">    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)</code>
+            <code class="ruby">    jwt.secret = ENV[&#39;DEVISE_JWT_SECRET_KEY&#39;]</code>
           </li>
         </div>
       
