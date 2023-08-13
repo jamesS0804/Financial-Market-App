@@ -4,7 +4,6 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts={})
-    puts response.headers['Authorization']
     expiry_object = Time.parse("#{Time.now + 30.minutes.to_i}")
     expiry_in_seconds = expiry_object.to_i
 
