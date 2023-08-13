@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :portfolios, dependent: :destroy
+  enum role: [ :trader, :admin ]
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
