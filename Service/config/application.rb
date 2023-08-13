@@ -49,5 +49,8 @@ module Service
         )
       end
     end
+    config.session_store :cookie_store, key: '_interslice_session', expire_after: 30.minutes.to_i
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end
