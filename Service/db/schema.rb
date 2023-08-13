@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_071505) do
     t.datetime "updated_at", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "role", null: false
+    t.integer "role", default: 0, null: false
     t.string "signup_status", default: "pending", null: false
     t.string "jti", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
