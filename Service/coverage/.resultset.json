@@ -1,40 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/models/user_spec.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/models/portfolio_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
           null
         ]
       },
@@ -158,6 +130,8 @@
           null,
           null,
           null,
+          null,
+          1,
           null,
           1,
           null,
@@ -584,6 +558,16 @@
           null,
           null,
           null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
           null
         ]
       },
@@ -627,6 +611,10 @@
           null,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -657,8 +645,118 @@
           1,
           null
         ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/models/user_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/requests/registrations_controller_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/users/registrations_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          2,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/serializers/user_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1691910458
+    "timestamp": 1691914400
   }
 }
