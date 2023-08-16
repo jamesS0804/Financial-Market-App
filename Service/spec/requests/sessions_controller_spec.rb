@@ -49,8 +49,4 @@ RSpec.describe "SessionsControllers", type: :request do
       end
     end
   end
-
-  after do
-    User.destroy_all
-  end
 end
