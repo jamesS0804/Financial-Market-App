@@ -22,8 +22,4 @@ RSpec.describe "RegistrationsControllers", type: :request do
       end
     end
   end
-
-  after(:each) do
-    User.destroy_all
-  end
 end
