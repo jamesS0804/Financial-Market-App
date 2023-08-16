@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  post "admin/create_trader" => "admins#create_trader"
 end
