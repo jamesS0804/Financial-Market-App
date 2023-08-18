@@ -7,14 +7,7 @@ class AdminsController < ApplicationController
         if user.save
             render json: {
                 status: { code: 200, message: "Trader creation successful."},
-                data: {
-                    id: user.id, 
-                    email: user.email, 
-                    password: user.password, 
-                    first_name: user.first_name, 
-                    last_name: user.last_name, 
-                    role: user.role 
-                }
+                data: UserExtendedSerializerSerializer.new(user).serializable_hash[:data][:attributes]
             }, status: :ok
         else
             render json: {
