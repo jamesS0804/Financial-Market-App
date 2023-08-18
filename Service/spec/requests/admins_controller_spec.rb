@@ -65,4 +65,14 @@ RSpec.describe "Admins", type: :request do
       end
     end
   end
+
+  describe "DELETE /delete_trader" do
+    context "when an admin wants to delete a trader" do
+      it "returns a JSON response with a success message" do
+        delete "/admin/delete_trader/#{user.id}"
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
