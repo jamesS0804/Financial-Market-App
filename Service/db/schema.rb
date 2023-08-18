@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_071505) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_061548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_071505) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "market_order_type", null: false
+    t.string "transaction_type", null: false
+    t.string "status", null: false
+    t.string "symbol", null: false
+    t.integer "quantity", null: false
+    t.decimal "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "portfolio_id", null: false
+    t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +59,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_071505) do
   end
 
   add_foreign_key "portfolios", "users"
+  add_foreign_key "transactions", "portfolios"
 end
