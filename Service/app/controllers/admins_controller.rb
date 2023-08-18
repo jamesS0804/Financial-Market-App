@@ -48,7 +48,17 @@ class AdminsController < ApplicationController
     end
 
     def delete_trader
+        user = User.find(params[:user_id])
 
+        if user.destroy
+            render json: {
+                status: { code: 200, message: "Trader deletion successful."}
+            }, status: :ok
+        else
+            render json: {
+                status: { code: 422, message: "Trader deletion failed." }
+            }, status: :unprocessable_entity
+        end
     end
 
     def view_all_traders
