@@ -84,7 +84,14 @@ class AdminsController < ApplicationController
     end
 
     def approve_trader
+        user_to_approve = User.find(params[:user_id])
 
+        if user_to_approve.update(signup_status: "approved")
+            render json: {
+                status: { code: 200, message: "Trader approved."},
+                data: UserExtendedSerializer.new(user_to_approve).serializable_hash[:data][:attributes]
+        }, status: :ok
+        end
     end
 
     def view_all_transactions
