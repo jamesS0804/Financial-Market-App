@@ -86,4 +86,17 @@ RSpec.describe "Admins", type: :request do
       end
     end
   end
+
+  describe "GET /view_all_pending" do
+    context "when an admin wants to see all pending traders' information" do
+      it "returns a JSON response with a success message" do
+        user1 = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
+        user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
+
+        get "/admin/view_all_pending"
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
