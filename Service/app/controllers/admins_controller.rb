@@ -7,7 +7,7 @@ class AdminsController < ApplicationController
         if user.save
             render json: {
                 status: { code: 200, message: "Trader creation successful."},
-                data: UserExtendedSerializerSerializer.new(user).serializable_hash[:data][:attributes]
+                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
             }, status: :ok
         else
             render json: {
@@ -17,7 +17,19 @@ class AdminsController < ApplicationController
     end
 
     def edit_trader
+        user = User.find(params[:user_id])
 
+        if user.update(trader_params)
+            user.email = trader_params[:email]
+            render json: {
+                status: { code: 200, message: "Trader update successful."},
+                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
+            }, status: :ok
+        else
+            render json: {
+                status: { code: 422, message: "Trader creation failed." }
+            }, status: :unprocessable_entity
+        end
     end
 
     def view_trader
