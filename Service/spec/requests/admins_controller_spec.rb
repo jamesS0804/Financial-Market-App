@@ -20,4 +20,30 @@ RSpec.describe "Admins", type: :request do
       end
     end
   end
+
+  let(:user) { User.create(email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" ) }
+
+  describe "PATCH /edit_trader" do
+    context "when an admin successfully edited a trader's info" do
+      it "returns a JSON response with a success message and updated trader's information" do
+        patch "/admin/edit_trader/#{user.id}", params: { 
+          user: { 
+            email: 'updated_email@example.com', password: 'updated_password', 
+            first_name: 'updated_first_name', last_name: 'updated_last_name'
+          } 
+        }
+
+        expect(response).to have_http_status(:ok)
+
+        json_response = JSON.parse(response.body)
+
+        puts json_response
+
+        expect(json_response['data']['email']).to eq("updated_email@example.com")
+        expect(json_response['data']['password']).to eq("updated_password")
+        expect(json_response['data']['first_name']).to eq("updated_first_name")
+        expect(json_response['data']['last_name']).to eq("updated_last_name")
+      end
+    end
+  end
 end
