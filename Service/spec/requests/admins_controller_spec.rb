@@ -54,8 +54,6 @@ RSpec.describe "Admins", type: :request do
 
         json_response = JSON.parse(response.body)
 
-        puts json_response
-
         expect(json_response['data']['email']).to eq("user@example.com")
         expect(json_response['data']['first_name']).to eq("test")
         expect(json_response['data']['last_name']).to eq("test")
@@ -70,6 +68,19 @@ RSpec.describe "Admins", type: :request do
     context "when an admin wants to delete a trader" do
       it "returns a JSON response with a success message" do
         delete "/admin/delete_trader/#{user.id}"
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe "GET /view_all_traders" do
+    context "when an admin wants to see all traders' information" do
+      it "returns a JSON response with a success message" do
+        user1 = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
+        user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
+
+        get "/admin/view_all_traders"
 
         expect(response).to have_http_status(:ok)
       end
