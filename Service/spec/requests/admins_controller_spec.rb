@@ -90,12 +90,28 @@ RSpec.describe "Admins", type: :request do
   describe "GET /view_all_pending" do
     context "when an admin wants to see all pending traders' information" do
       it "returns a JSON response with a success message" do
-        user1 = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
-        user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" )
+        user1 = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader")
+        user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader")
 
         get "/admin/view_all_pending"
 
         expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe "PATCH /approve_trader" do
+    context "when an admin wants to approve a specific trader" do
+      it "returns a JSON response with a success message" do
+        user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader")
+
+        patch "/admin/approve_trader/#{user.id}"
+
+        expect(response).to have_http_status(:ok)
+
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['data']['signup_status']).to eq('approved')
       end
     end
   end
