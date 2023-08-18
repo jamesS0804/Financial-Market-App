@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post "admin/create_trader" => "admins#create_trader"
   patch "admin/edit_trader/:user_id" => "admins#edit_trader"
   get "admin/view_trader/:user_id" => "admins#view_trader"
+  delete "admin/delete_trader/:user_id" => "admins#delete_trader"
 end
