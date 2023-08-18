@@ -33,7 +33,18 @@ class AdminsController < ApplicationController
     end
 
     def view_trader
+        user = User.find(params[:user_id])
 
+        if user
+            render json: {
+                status: { code: 200, message: "Trader found."},
+                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
+            }, status: :ok
+        else
+            render json: {
+                status: { code: 422, message: "Trader does not exist." }
+            }, status: :unprocessable_entity
+        end
     end
 
     def delete_trader
