@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   post "admin/create_trader" => "admins#create_trader"
+  patch "admin/edit_trader/:user_id" => "admins#edit_trader"
 end
