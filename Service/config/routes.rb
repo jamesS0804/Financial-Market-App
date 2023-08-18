@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   patch "admin/edit_trader/:user_id" => "admins#edit_trader"
   get "admin/view_trader/:user_id" => "admins#view_trader"
   delete "admin/delete_trader/:user_id" => "admins#delete_trader"
+  get "admin/view_all_traders" => "admins#view_all_traders"
 end
