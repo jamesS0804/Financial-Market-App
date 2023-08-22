@@ -38,8 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_062841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "portfolio_id", null: false
-    t.bigint "markets_id", null: false
-    t.index ["markets_id"], name: "index_transactions_on_markets_id"
+    t.bigint "market_id", null: false
+    t.index ["market_id"], name: "index_transactions_on_market_id"
     t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
   end
 
@@ -67,6 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_062841) do
   end
 
   add_foreign_key "portfolios", "users"
-  add_foreign_key "transactions", "markets", column: "markets_id"
+  add_foreign_key "transactions", "markets"
   add_foreign_key "transactions", "portfolios"
 end
