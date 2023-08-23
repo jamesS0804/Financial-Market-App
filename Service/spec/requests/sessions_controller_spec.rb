@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "SessionsControllers", type: :request do
-  let(:user) { User.create(email: 'user@example.com', password: 'password', first_name: 'john', last_name: 'doe', role: 'trader', confirmed_at: Date.today) }
+  let(:user) { User.create(email: 'user@example.com', password: 'password', first_name: 'john', last_name: 'doe', role: 'TRADER', confirmed_at: Date.today) }
 
   before { post '/login', params: { user: { email: user.email, password: user.password } } }
 
