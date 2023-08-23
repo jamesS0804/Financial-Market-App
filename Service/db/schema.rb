@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_062841) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "market_order_type", null: false
-    t.string "transaction_type", null: false
+    t.integer "transaction_type", default: 0, null: false
     t.string "status", null: false
     t.string "symbol", null: false
     t.integer "quantity", null: false
