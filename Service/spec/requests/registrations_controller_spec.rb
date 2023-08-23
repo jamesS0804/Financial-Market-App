@@ -4,7 +4,7 @@ RSpec.describe "RegistrationsControllers", type: :request do
   describe 'POST #create' do
     context 'when user creation is successful' do
       it 'returns a JSON response with a success message' do
-        post "/signup", params: { user: { email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "trader" } }
+        post "/signup", params: { user: { email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER" } }
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)).to include(
           'status' => { 'code' => 200, 'message' => 'Signed up successfully.' }
