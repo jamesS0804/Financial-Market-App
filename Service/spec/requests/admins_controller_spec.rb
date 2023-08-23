@@ -122,7 +122,7 @@ RSpec.describe "Admins", type: :request do
         user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER")
         portfolio1 = user.portfolios.create(name: 'sample portfolio')
         transaction1 = portfolio1.transactions.create(
-          market_id: 1,
+          market_name: 'STOCK',
           market_order_type: 'MARKET ORDER',
           transaction_type: 'BUY',
           status: 'FILLED',
@@ -131,7 +131,7 @@ RSpec.describe "Admins", type: :request do
           price: 150.00,
         )
         transaction2 = portfolio1.transactions.create(
-          market_id: 1,
+          market_name: 'STOCK',
           market_order_type: 'MARKET ORDER',
           transaction_type: 'BUY',
           status: 'FILLED',
@@ -140,7 +140,7 @@ RSpec.describe "Admins", type: :request do
           price: 2500.00,
         )
         transaction3 = portfolio1.transactions.create(
-          market_id: 1,
+          market_name: 'STOCK',
           market_order_type: 'MARKET ORDER',
           transaction_type: 'SELL',
           status: 'FILLED',
