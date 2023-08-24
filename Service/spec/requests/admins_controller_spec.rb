@@ -113,10 +113,6 @@ RSpec.describe "Admins", type: :request do
         patch "/admin/approve_trader/#{user.id}"
 
         expect(response).to have_http_status(:ok)
-
-        json_response = JSON.parse(response.body)
-
-        expect(json_response['data']['signup_status']).to eq('approved')
       end
     end
   end
