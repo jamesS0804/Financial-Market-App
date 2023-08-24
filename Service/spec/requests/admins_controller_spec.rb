@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Admins", type: :request do
+  let(:admin) { User.create(email: 'admin@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "ADMIN", confirmed_at: Date.today) }
+  before(:each) do
+    sign_in(admin)
+  end
+
   describe "POST /create_trader" do
     context "when an admin successfully creates a new trader" do
       it "returns a JSON response with a success message and created trader's information" do
@@ -152,10 +157,6 @@ RSpec.describe "Admins", type: :request do
         get "/admin/view_all_transactions"
 
         expect(response).to have_http_status(:ok)
-
-        json_response = JSON.parse(response.body)
-
-        puts json_response
       end
     end
   end
