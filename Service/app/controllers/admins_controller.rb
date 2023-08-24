@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
     respond_to :json
+    before_action :authenticate_admin
 
     def create_trader
         user = User.new(trader_params)
@@ -106,6 +107,14 @@ class AdminsController < ApplicationController
     end
 
     private
+
+    def authenticate_admin
+        unless current_user && current_user.ADMIN?
+            render json: {
+                status: { code: 403, message: "You don't have permission to access this page." }
+            }, status: :forbidden
+        end
+    end
 
     def trader_params
         params.require(:user).permit(:email, :password, :first_name, :last_name, :role)
