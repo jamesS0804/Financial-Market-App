@@ -74,7 +74,7 @@ class AdminsController < ApplicationController
     end
 
     def view_all_pending
-        pending_traders = User.where(signup_status: "pending").map do |user|
+        pending_traders = User.where(signup_status: "pending").where.not(confirmed_at: nil).map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
 
@@ -88,10 +88,10 @@ class AdminsController < ApplicationController
         user_to_approve = User.find(params[:user_id])
 
         if user_to_approve.update(signup_status: "approved")
+            AdminMailer.confirmation_email(user_to_approve).deliver_now
             render json: {
-                status: { code: 200, message: "Trader approved."},
-                data: UserExtendedSerializer.new(user_to_approve).serializable_hash[:data][:attributes]
-        }, status: :ok
+                status: { code: 200, message: "Trader approved and confirmation email sent"}
+            }, status: :ok
         end
     end
 
