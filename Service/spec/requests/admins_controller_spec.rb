@@ -152,6 +152,10 @@ RSpec.describe "Admins", type: :request do
         get "/admin/view_all_transactions"
 
         expect(response).to have_http_status(:ok)
+
+        json_response = JSON.parse(response.body)
+
+        puts json_response
       end
     end
   end

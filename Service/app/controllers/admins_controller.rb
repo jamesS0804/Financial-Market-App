@@ -62,7 +62,7 @@ class AdminsController < ApplicationController
     end
 
     def view_all_traders
-        trader_users = User.where(role: :trader).map do |user|
+        trader_users = User.where(role: :TRADER).map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
 
@@ -95,7 +95,14 @@ class AdminsController < ApplicationController
     end
 
     def view_all_transactions
-
+        all_transactions = Transaction.all
+        serialized_transactions = all_transactions.map do |transaction|
+            TransactionSerializer.new(transaction).serializable_hash[:data][:attributes]
+        end
+        render json: {
+            status: { code: 200, message: "All transactions obtained."},
+            data: serialized_transactions
+        }, status: :ok
     end
 
     private
