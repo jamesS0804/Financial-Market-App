@@ -3,5 +3,5 @@ class Portfolio < ApplicationRecord
 
     has_many :transactions, dependent: :destroy
 
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: { scope: :user_id }
 end
