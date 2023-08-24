@@ -1,14 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/models/market_spec.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/mailers/admin_mailer_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
-          2,
-          null,
           null
         ]
       },
@@ -687,6 +685,35 @@
           null
         ]
       },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/mailers/admin_mailer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/mailers/application_mailer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/models/market_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
       "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/market.rb": {
         "lines": [
           1,
@@ -911,10 +938,6 @@
           null,
           1,
           null,
-          1,
-          null,
-          1,
-          null,
           null,
           null,
           null,
@@ -1124,7 +1147,7 @@
           null,
           1,
           1,
-          3,
+          1,
           null,
           null,
           1,
@@ -1138,7 +1161,7 @@
           null,
           1,
           1,
-          null,
+          1,
           null,
           null,
           null,
@@ -1274,6 +1297,6 @@
         ]
       }
     },
-    "timestamp": 1692837305
+    "timestamp": 1692849191
   }
 }
