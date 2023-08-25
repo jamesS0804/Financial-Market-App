@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_221833) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_140133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_221833) do
     t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
   end
 
+  create_table "units", force: :cascade do |t|
+    t.string "symbol"
+    t.string "name"
+    t.string "exchange"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "market_id"
+    t.index ["market_id"], name: "index_units_on_market_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,4 +77,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_221833) do
 
   add_foreign_key "portfolios", "users"
   add_foreign_key "transactions", "portfolios"
+  add_foreign_key "units", "markets"
 end
