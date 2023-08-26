@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   get "admin/view_all_transactions" => "admins#view_all_transactions"
   
   get "get_data" => "unit#get_data"
+
+  post "portfolios/:portfolio_id/transactions/market_order/buy" => "transactions#process_market_order_buy"
 end
