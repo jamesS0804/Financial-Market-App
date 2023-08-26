@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "TransactionsController", type: :request do
+  before(:each) do
+    market = Market.create(name: 'STOCK')
+  end
+
   describe "POST /process_limit_order_buy" do
 
   end
