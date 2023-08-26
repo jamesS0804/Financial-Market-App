@@ -7,6 +7,10 @@
           null,
           1,
           1,
+          1,
+          null,
+          null,
+          1,
           null,
           null,
           null,
@@ -725,6 +729,16 @@
           null
         ]
       },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/market.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/portfolio.rb": {
         "lines": [
           1,
@@ -747,14 +761,14 @@
           1,
           null,
           1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
           1,
           1,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
           null,
           null,
           null,
@@ -784,17 +798,19 @@
           null
         ]
       },
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/market.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/serializers/transaction_serializer.rb": {
         "lines": [
+          1,
           1,
           1,
           null,
           1,
           1,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1693092443
+    "timestamp": 1693093123
   }
 }
