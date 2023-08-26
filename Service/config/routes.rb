@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get "admin/view_all_pending" => "admins#view_all_pending"
   patch "admin/approve_trader/:user_id" => "admins#approve_trader"
   get "admin/view_all_transactions" => "admins#view_all_transactions"
+  
+  get "get_data" => "unit#get_data"
 end
