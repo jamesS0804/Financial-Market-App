@@ -1,14 +1,43 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/requests/unit_controller_spec.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/requests/transactions_controller_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
           1,
           1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
           null,
           1,
           null,
@@ -670,6 +699,8 @@
           1,
           null,
           1,
+          null,
+          1,
           null
         ]
       },
@@ -694,52 +725,45 @@
           null
         ]
       },
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/unit_controller.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/portfolio.rb": {
         "lines": [
           1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
           1,
           null,
           1,
           null,
           1,
+          null
+        ]
+      },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/transactions_controller.rb": {
+        "lines": [
           1,
           1,
-          42,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          42,
+          1,
+          1,
+          1,
           null,
           1,
           null,
-          null,
-          null,
-          null,
+          1,
+          0,
           0,
           null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
           null,
           null
         ]
@@ -750,9 +774,12 @@
           null
         ]
       },
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/unit.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/models/transaction.rb": {
         "lines": [
           1,
+          1,
+          1,
+          null,
           1,
           null
         ]
@@ -768,6 +795,6 @@
         ]
       }
     },
-    "timestamp": 1693079755
+    "timestamp": 1693092443
   }
 }
