@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   post "portfolios/:portfolio_id/transactions/market_order/buy" => "transactions#process_market_order_buy"
   post "portfolios/:portfolio_id/transactions/market_order/sell" => "transactions#process_market_order_sell"
+  post "portfolios/:portfolio_id/transactions/limit_order/buy" => "transactions#process_limit_order_buy"
 end
