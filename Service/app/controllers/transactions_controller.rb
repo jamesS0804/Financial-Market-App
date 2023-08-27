@@ -1,19 +1,23 @@
 class TransactionsController < ApplicationController
     def process_market_order_buy
         portfolio = Portfolio.find(params[:portfolio_id])
-        puts portfolio.inspect
         transaction = portfolio.transactions.new(transaction_params)
 
-        puts transaction.errors.inspect
-
         if transaction.save
-            puts transaction.inspect
+            price = BigDecimal(transaction_params[:price])
+            portfolio.update(
+                market_value: portfolio.market_value + price, 
+                settled_cash: portfolio.settled_cash - price,
+                buying_power: portfolio.buying_power - price
+            )
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
-                data: TransactionSerializer.new(transaction).serializable_hash[:data][:attributes]
+                data: { 
+                    transaction_receipt: TransactionSerializer.new(transaction).serializable_hash[:data][:attributes],
+                    portfolio: portfolio
+                }
             }, status: :ok
         else
-            puts transaction.inspect
             render json: {
                 status: { code: 422, message: 'Transaction failed'}
             }, status: :unprocessable_entity
