@@ -39,8 +39,6 @@ class UnitController < ApplicationController
                 status: { code: 200, message: 'Stock data obtained.' },
                 data: all_stocks
             }, status: :ok
-          else
-            puts "API request failed: #{response.code}"
           end
     end
 end
