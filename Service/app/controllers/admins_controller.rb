@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
     respond_to :json
+    before_action :authenticate_user!
     before_action :authenticate_admin
 
     def create_trader
@@ -107,8 +108,8 @@ class AdminsController < ApplicationController
     def authenticate_admin
         unless current_user && current_user.ADMIN?
             render json: {
-                status: { code: 401, message: "You don't have permission to access this page." }
-            }, status: :unauthorized
+                status: { code: 403, message: "You don't have permission to access this page." }
+            }, status: :forbidden
         end
     end
 
