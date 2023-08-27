@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "TransactionsController", type: :request do
   let(:user) { User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: Date.today) }
   before(:each) do
+    sign_in(user)
     market = Market.create(name: 'STOCK')
     @portfolio = user.portfolios.create(name: 'test portfolio', settled_cash: 1000.00, buying_power: 1000.00, market_value: 500.00)
   end
