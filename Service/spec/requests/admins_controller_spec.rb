@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Admins", type: :request do
-  let(:non_admin_user) { User.create({ email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER" }) }
+  let(:non_admin_user) { User.create({ email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: '2023-08-27T00:00:00.000Z' }) }
   describe "when user is an admin" do
     let(:admin) { User.create(email: 'admin@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "ADMIN", confirmed_at: Date.today) }
     
@@ -162,7 +162,7 @@ RSpec.describe "Admins", type: :request do
           expect(json_response['data']['first_name']).to eq("test")
           expect(json_response['data']['last_name']).to eq("test")
           expect(json_response['data']['created_at']).to_not be_nil
-          expect(json_response['data']['confirmed_at']).to eq(nil)
+          expect(json_response['data']['confirmed_at']).to eq('2023-08-27T00:00:00.000Z')
           expect(json_response['data']['signup_status']).to eq("pending")
         end
       end
@@ -281,10 +281,14 @@ RSpec.describe "Admins", type: :request do
       sign_in(non_admin_user)
     end
     context "when a non-admin tries to access any of the actions in the controller" do
-      xit "should send a JSON response with an error message" do
+      it "should send a JSON response with an error message" do
         get "/admin/view_all_transactions"
 
         expect(response).to have_http_status(:forbidden)
+
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['status']['message']).to eq("You don't have permission to access this page.")
       end
     end
   end
