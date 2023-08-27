@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+    before_action :authenticate_user!
+    
     def process_market_order_buy
         portfolio = Portfolio.find(params[:portfolio_id])
         transaction = portfolio.transactions.new(transaction_params)
