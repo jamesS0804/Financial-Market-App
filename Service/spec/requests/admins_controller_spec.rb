@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe "Admins", type: :request do
   let(:non_admin_user) { User.create({ email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: '2023-08-27T00:00:00.000Z' }) }
   describe "when user is an admin" do
-    let(:admin) { User.create(email: 'admin@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "ADMIN", confirmed_at: Date.today) }
-    
+    let(:admin) { User.create(email: 'admin@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "ADMIN", confirmed_at: Date.today, signup_status: 'approved') }
     
     before(:each) do
       sign_in(admin)
@@ -207,6 +206,12 @@ RSpec.describe "Admins", type: :request do
           get "/admin/view_all_traders"
 
           expect(response).to have_http_status(:ok)
+
+          json_response = JSON.parse(response.body)
+
+          expect(json_response.count).to eq(2)
+          expect(json_response['data'][0]['email']).to eq(user1.email)
+          expect(json_response['data'][1]['email']).to eq(user2.email)
         end
       end
     end
@@ -215,11 +220,17 @@ RSpec.describe "Admins", type: :request do
       context "when an admin wants to see all pending traders' information" do
         it "returns a JSON response with a success message" do
           user1 = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER")
-          user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER")
+          user2 = User.create(email: 'user2@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: Date.today)
+          user3 = User.create(email: 'user3@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: Date.today, signup_status: 'approved')
 
           get "/admin/view_all_pending"
 
           expect(response).to have_http_status(:ok)
+
+          json_response = JSON.parse(response.body)
+
+          expect(json_response.count).to eq(2)
+          expect(json_response['data'][0]['email']).to eq(user2.email)
         end
       end
     end
@@ -227,11 +238,16 @@ RSpec.describe "Admins", type: :request do
     describe "PATCH /approve_trader" do
       context "when an admin wants to approve a specific trader" do
         it "returns a JSON response with a success message" do
-          user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER")
+          user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: Date.today)
 
           patch "/admin/approve_trader/#{non_admin_user.id}"
 
           expect(response).to have_http_status(:ok)
+
+          json_response = JSON.parse(response.body)
+
+          expect(json_response['data'].count).to eq(1)
+          expect(json_response['data'][0]['email']).to eq(user.email)
         end
       end
     end
@@ -239,39 +255,37 @@ RSpec.describe "Admins", type: :request do
     describe "GET /view_all_transactions" do
       context "when an admin wants to see all transactions" do
         it "returns a JSON response with a success message" do
-          user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER")
-          portfolio1 = user.portfolios.create(name: 'sample portfolio')
-          transaction1 = portfolio1.transactions.create(
+          # user = User.create(email: 'user1@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: Date.today)
+          Market.create(name: 'STOCK')
+          portfolio = non_admin_user.portfolios.create(name: 'sample portfolio', buying_power: 1000.00, settled_cash: 1000.00, market_value: 500.00)
+          
+          transaction1 = portfolio.transactions.create(
             market_name: 'STOCK',
-            market_order_type: 'MARKET ORDER',
+            market_order_type: 'MARKET',
             transaction_type: 'BUY',
             status: 'FILLED',
             symbol: 'AAPL',
-            quantity: 10,
-            price: 150.00,
+            quantity: 100,
+            price: 150.00
           )
-          transaction2 = portfolio1.transactions.create(
+          transaction2 = portfolio.transactions.create(
             market_name: 'STOCK',
-            market_order_type: 'MARKET ORDER',
+            market_order_type: 'MARKET',
             transaction_type: 'BUY',
             status: 'FILLED',
-            symbol: 'GOOGL',
-            quantity: 5,
-            price: 2500.00,
-          )
-          transaction3 = portfolio1.transactions.create(
-            market_name: 'STOCK',
-            market_order_type: 'MARKET ORDER',
-            transaction_type: 'SELL',
-            status: 'FILLED',
             symbol: 'AAPL',
-            quantity: 3,
-            price: 155.00,
+            quantity: 1000,
+            price: 1500.00
           )
-
           get "/admin/view_all_transactions"
-
+          
           expect(response).to have_http_status(:ok)
+
+          json_response = JSON.parse(response.body)
+
+          expect(json_response['data'].count).to eq(2)
+          expect(json_response['data'][0]['price']).to eq('150.0')
+          expect(json_response['data'][1]['price']).to eq('1500.0')
         end
       end
     end
