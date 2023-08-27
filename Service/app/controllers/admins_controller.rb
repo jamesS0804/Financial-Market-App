@@ -12,7 +12,7 @@ class AdminsController < ApplicationController
             }, status: :ok
         else
             render json: {
-                status: { code: 422, message: "Trader creation failed." }
+                status: { code: 422, message: user.errors.full_messages.join(', ') }
             }, status: :unprocessable_entity
         end
     end
@@ -28,7 +28,7 @@ class AdminsController < ApplicationController
             }, status: :ok
         else
             render json: {
-                status: { code: 422, message: "Trader creation failed." }
+                status: { code: 422, message: user.errors.full_messages.join(', ') }
             }, status: :unprocessable_entity
         end
     end
@@ -41,10 +41,6 @@ class AdminsController < ApplicationController
                 status: { code: 200, message: "Trader found."},
                 data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
             }, status: :ok
-        else
-            render json: {
-                status: { code: 422, message: "Trader does not exist." }
-            }, status: :unprocessable_entity
         end
     end
 
@@ -111,8 +107,8 @@ class AdminsController < ApplicationController
     def authenticate_admin
         unless current_user && current_user.ADMIN?
             render json: {
-                status: { code: 403, message: "You don't have permission to access this page." }
-            }, status: :forbidden
+                status: { code: 401, message: "You don't have permission to access this page." }
+            }, status: :unauthorized
         end
     end
 
