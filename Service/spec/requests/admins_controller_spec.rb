@@ -246,8 +246,7 @@ RSpec.describe "Admins", type: :request do
 
           json_response = JSON.parse(response.body)
 
-          expect(json_response['data'].count).to eq(1)
-          expect(json_response['data'][0]['email']).to eq(user.email)
+          expect(json_response['status']['message']).to eq('Trader approved and confirmation email sent')
         end
       end
     end
@@ -278,7 +277,7 @@ RSpec.describe "Admins", type: :request do
             price: 1500.00
           )
           get "/admin/view_all_transactions"
-          
+
           expect(response).to have_http_status(:ok)
 
           json_response = JSON.parse(response.body)
