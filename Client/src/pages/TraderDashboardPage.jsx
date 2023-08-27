@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-export default function LoginPage(){
+export default function TraderDashboardPage(){
     return(
         <>
-            <h1>LoginPage</h1>
+            <h1>TraderDashboardPage</h1>
             <Link type="button" to="/">Logout</Link>
         </>
     )
