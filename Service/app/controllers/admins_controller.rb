@@ -5,7 +5,6 @@ class AdminsController < ApplicationController
 
     def create_trader
         user = User.new(trader_params)
-
         if user.save
             render json: {
                 status: { code: 200, message: "Trader creation successful."},
@@ -20,7 +19,6 @@ class AdminsController < ApplicationController
 
     def edit_trader
         user = User.find(params[:user_id])
-
         if user.update(trader_params)
             user.email = trader_params[:email]
             render json: {
@@ -36,7 +34,6 @@ class AdminsController < ApplicationController
 
     def view_trader
         user = User.find(params[:user_id])
-
         if user
             render json: {
                 status: { code: 200, message: "Trader found."},
@@ -47,7 +44,6 @@ class AdminsController < ApplicationController
 
     def delete_trader
         user = User.find(params[:user_id])
-
         if user.destroy
             render json: {
                 status: { code: 200, message: "Trader deletion successful."}
@@ -60,10 +56,9 @@ class AdminsController < ApplicationController
     end
 
     def view_all_traders
-        trader_users = User.where(role: :TRADER).map do |user|
+        trader_users = User.TRADER.map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
-
         render json: {
                 status: { code: 200, message: "All traders' information obtained."},
                 data: trader_users
@@ -71,19 +66,15 @@ class AdminsController < ApplicationController
     end
 
     def view_all_pending
-        pending_traders = User.where(signup_status: "pending").where.not(confirmed_at: nil).map do |user|
-            UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
-        end
-
+        serialized_pending_traders = User.pending_traders
         render json: {
                 status: { code: 200, message: "All pending traders obtained"},
-                data: pending_traders
+                data: serialized_pending_traders
         }, status: :ok
     end
 
     def approve_trader
         user_to_approve = User.find(params[:user_id])
-
         if user_to_approve.update(signup_status: "approved")
             AdminMailer.confirmation_email(user_to_approve).deliver_now
             render json: {
