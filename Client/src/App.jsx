@@ -7,20 +7,24 @@ import TraderDashboardPage from './pages/TraderDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
+import axios from 'axios';
 
 function App() {
   const [ authAlert,setAuthAlert ] = useState({status: '', message: ''})
-    const renderAlertVariant = () => {
-        switch(authAlert.status) {
-            case 'SUCCESS':
-                return <Alert variant='success'>{authAlert.message}</Alert>;
-            case 'ERROR':
-                return <Alert variant='danger' >{authAlert.message}</Alert>;               
-            case 'WARNING':
-                return <Alert variant='warning'>{authAlert.message}</Alert>;
-            default:
-                return null;
-        }
+  const api = axios.create({
+    baseURL: 'http://127.0.0.1:3000/'
+  })
+  const renderAlertVariant = () => {
+      switch(authAlert.status) {
+          case 'SUCCESS':
+              return <Alert variant='success'>{authAlert.message}</Alert>;
+          case 'ERROR':
+              return <Alert variant='danger' >{authAlert.message}</Alert>;               
+          case 'WARNING':
+              return <Alert variant='warning'>{authAlert.message}</Alert>;
+          default:
+              return null;
+      }
     }
   return (
     <Routes>
@@ -33,6 +37,7 @@ function App() {
         }/>
         <Route path="/signup" element={
           <SignupPage 
+            api={api}
             authAlert={authAlert}
             setAuthAlert={setAuthAlert}
             renderAlertVariant={renderAlertVariant}/>
