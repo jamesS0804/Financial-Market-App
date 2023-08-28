@@ -1,22 +1,36 @@
 import { Link } from "react-router-dom"
-import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { Form, Button, FloatingLabel, Spinner } from 'react-bootstrap'
 import { useState, useRef } from "react";
 
 export default function SignupPage(props){
-    const { api, authAlert, setAuthAlert, renderAlertVariant } = props
+    const { 
+        api, 
+        emailRef,
+        passwordRef, 
+        authAlert, 
+        setAuthAlert, 
+        renderAlertVariant,
+        isLoading,
+        setIsLoading
+    } = props
+    const formRef = useRef()
     const firstNameRef = useRef()
     const lastNameRef = useRef()
-    const emailRef = useRef()
-    const passwordRef = useRef()
     const confirmPasswordRef = useRef()
-    const [validated, setValidated] = useState(false)
+    const [ validated, setValidated ] = useState(false)
 
     const processSignup = async(e) => {
         e.preventDefault()
+
+        if(!formRef.current.checkValidity()){
+            setValidated(true)
+            return;
+        }
+
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             setAuthAlert({status: "ERROR", message: "Password doesn't match!"})
         } else {
-            const signupInputs = {
+            const user = {
                 first_name: firstNameRef.current.value,
                 last_name: lastNameRef.current.value,
                 email: emailRef.current.value,
@@ -24,9 +38,10 @@ export default function SignupPage(props){
                 confirm_password: confirmPasswordRef.current.value,
                 role: "TRADER"
             }
-            console.log(signupInputs)
+            console.log(user)
 
             try {
+                setIsLoading(true)
                 const response = await api.post("signup", {
                     user: {
                         first_name: firstNameRef.current.value,
@@ -45,8 +60,9 @@ export default function SignupPage(props){
             } catch(error) {
                 setAuthAlert({status: "ERROR", message: error})
             }
-            setValidated(true)
+            setIsLoading(false)
         }
+        setValidated(true)
     }
     return(
         <>
@@ -56,7 +72,7 @@ export default function SignupPage(props){
                 <Link type="button" to="/login">Login</Link>
             </div>
             <div className="w-25">
-                <Form noValidate validated={validated} onSubmit={processSignup}>
+                <Form ref={formRef} validated={validated} onSubmit={processSignup}>
                     <FloatingLabel
                         label="First Name"
                         className="mb-3"
@@ -124,8 +140,19 @@ export default function SignupPage(props){
                     </FloatingLabel>
                 </Form>
                 { authAlert.status && renderAlertVariant() }
+                <Button type="submit" onClick={processSignup}>
+                    {
+                        isLoading ? 
+                            <div>
+                                <p>Signing up..</p>
+                                <Spinner animation="border"/>
+                            </div>
+                            :
+                            <span>Submit</span>
+                    }
+                </Button>
             </div>
-            <Button onClick={processSignup}>Signup</Button>
+            
         </>
     )
 }
