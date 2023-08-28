@@ -13,7 +13,7 @@ function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
   const [ isLoading, setIsLoading ] = useState(false)
   const [ auth, setAuth ] = useState()
-  const [ currentUserData, setCurrentUserData ] = useState({email: "", first_name: "", last_name: ""})
+  const [ currentUserData, setCurrentUserData ] = useState({email: "", first_name: "", last_name: "", role: ""})
   const emailRef = useRef()
   const passwordRef = useRef()
   const navigate = useNavigate()
@@ -34,7 +34,8 @@ function App() {
     }
   useEffect(()=> {
     if(auth){
-      navigate("/dashboard/trader")
+      currentUserData.role === "TRADER" ?
+        navigate("/dashboard/trader") : navigate("dashboard/admin")
     }
   }, [auth])
   return (
