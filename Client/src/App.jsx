@@ -12,7 +12,10 @@ import axios from 'axios';
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
   const [ isLoading, setIsLoading ] = useState(false)
-  const [ auth, setAuth ] = useState()
+  const [ auth, setAuth ] = useState(()=>{
+    const session_auth = sessionStorage.getItem('authorization')
+    session_auth ? session_auth : ""
+  })
   const [ currentUserData, setCurrentUserData ] = useState({email: "", first_name: "", last_name: "", role: ""})
   const emailRef = useRef()
   const passwordRef = useRef()
