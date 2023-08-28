@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Form, Button, FloatingLabel, Spinner } from 'react-bootstrap'
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function LoginPage(props){
     const { 
@@ -18,6 +18,10 @@ export default function LoginPage(props){
     } = props
     const formRef = useRef()
     const [ validated, setValidated ] = useState(false)
+
+    useEffect(()=> {
+        setAuthAlert({status: "", message: ""})
+    },[])
 
     const processLogin = async(e) => {
         e.preventDefault()
@@ -38,7 +42,7 @@ export default function LoginPage(props){
             if(response.status === 200) {
                 console.log(response)
                 const userData = response.data.data.user
-                setCurrentUserData({ email: userData.email, first_name: userData.first_name, last_name: userData.last_name})
+                setCurrentUserData({ email: userData.email, first_name: userData.first_name, last_name: userData.last_name, role: userData.role})
                 setAuth(response.headers['authorization'])
                 sessionStorage.setItem('authorization',response.headers['authorization'].split(' ')[1])
                 setAuthAlert({status: "SUCCESS", message: "Signup successful!"})

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Form, Button, FloatingLabel, Spinner } from 'react-bootstrap'
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function SignupPage(props){
     const { 
@@ -18,6 +18,10 @@ export default function SignupPage(props){
     const lastNameRef = useRef()
     const confirmPasswordRef = useRef()
     const [ validated, setValidated ] = useState(false)
+
+    useEffect(()=> {
+        setAuthAlert({status: "", message: ""})
+    },[])
 
     const processSignup = async(e) => {
         e.preventDefault()
