@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import { Form, Button, FloatingLabel, InputGroup } from 'react-bootstrap'
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import { useState, useRef } from "react";
 
 export default function SignupPage(props){
-    const { authAlert, setAuthAlert, renderAlertVariant } = props
+    const { api, authAlert, setAuthAlert, renderAlertVariant } = props
     const firstNameRef = useRef()
     const lastNameRef = useRef()
     const emailRef = useRef()
@@ -12,22 +12,40 @@ export default function SignupPage(props){
     const [validated, setValidated] = useState(false)
 
     const processSignup = async() => {
-        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+        if (!passwordRef.current.value || passwordRef.current.value !== confirmPasswordRef.current.value) {
             setAuthAlert({status: "ERROR", message: "Password doesn't match!"})
-            return
-        }
-        const signupInputs = {
-            first_name: firstNameRef.current.value,
-            last_name: lastNameRef.current.value,
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-            confirm_password: confirmPasswordRef.current.value,
-            role: "TRADER"
-        }
-        console.log(signupInputs)
+        } else {
+            const signupInputs = {
+                first_name: firstNameRef.current.value,
+                last_name: lastNameRef.current.value,
+                email: emailRef.current.value,
+                password: passwordRef.current.value,
+                confirm_password: confirmPasswordRef.current.value,
+                role: "TRADER"
+            }
+            console.log(signupInputs)
 
-        setAuthAlert({status: "SUCCESS", message: "Signup successful!"})
-        setValidated(true)
+            try {
+                const response = api.post("signup", {
+                    user: {
+                        first_name: firstNameRef.current.value,
+                        last_name: lastNameRef.current.value,
+                        email: emailRef.current.value,
+                        password: passwordRef.current.value,
+                        confirm_password: confirmPasswordRef.current.value,
+                        role: "TRADER"
+                    }
+                })
+                if(response.status === 200) {
+                    setAuthAlert({status: "SUCCESS", message: "Signup successful!"})
+                } else {
+                    setAuthAlert({status: "ERROR", message: "Signup failed!"})
+                }
+            } catch(error) {
+                setAuthAlert({status: "ERROR", message: error})
+            }
+            setValidated(true)
+        }
     }
     return(
         <>
@@ -86,6 +104,9 @@ export default function SignupPage(props){
                             type='password'
                             required
                         />
+                        <Form.Control.Feedback type='invalid'>
+                            Password shouldn't be blank.
+                        </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel
                         label="Confirm Password"
@@ -96,6 +117,9 @@ export default function SignupPage(props){
                             type='password'
                             required
                         />
+                        <Form.Control.Feedback type='invalid'>
+                            Password shouldn't be blank.
+                        </Form.Control.Feedback>
                     </FloatingLabel>
                 </Form>
                 { authAlert.status && renderAlertVariant() }
