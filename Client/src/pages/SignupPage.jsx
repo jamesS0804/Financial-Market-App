@@ -11,8 +11,9 @@ export default function SignupPage(props){
     const confirmPasswordRef = useRef()
     const [validated, setValidated] = useState(false)
 
-    const processSignup = async() => {
-        if (!passwordRef.current.value || passwordRef.current.value !== confirmPasswordRef.current.value) {
+    const processSignup = async(e) => {
+        e.preventDefault()
+        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             setAuthAlert({status: "ERROR", message: "Password doesn't match!"})
         } else {
             const signupInputs = {
@@ -26,7 +27,7 @@ export default function SignupPage(props){
             console.log(signupInputs)
 
             try {
-                const response = api.post("signup", {
+                const response = await api.post("signup", {
                     user: {
                         first_name: firstNameRef.current.value,
                         last_name: lastNameRef.current.value,
