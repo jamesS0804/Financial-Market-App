@@ -30,16 +30,6 @@ export default function SignupPage(props){
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             setAuthAlert({status: "ERROR", message: "Password doesn't match!"})
         } else {
-            const user = {
-                first_name: firstNameRef.current.value,
-                last_name: lastNameRef.current.value,
-                email: emailRef.current.value,
-                password: passwordRef.current.value,
-                confirm_password: confirmPasswordRef.current.value,
-                role: "TRADER"
-            }
-            console.log(user)
-
             try {
                 setIsLoading(true)
                 const response = await api.post("signup", {
@@ -148,11 +138,10 @@ export default function SignupPage(props){
                                 <Spinner animation="border"/>
                             </div>
                             :
-                            <span>Submit</span>
+                            <span>Signup</span>
                     }
                 </Button>
             </div>
-            
         </>
     )
 }
