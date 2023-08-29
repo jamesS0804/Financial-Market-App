@@ -42,8 +42,9 @@ export default function LoginPage(props){
             if(response.status === 200) {
                 console.log(response)
                 const userData = response.data.data.user
-                setCurrentUserData({ email: userData.email, first_name: userData.first_name, last_name: userData.last_name, role: userData.role})
+                setCurrentUserData({ id: userData.id ,email: userData.email, first_name: userData.first_name, last_name: userData.last_name, role: userData.role})
                 setAuth(response.headers['authorization'])
+                sessionStorage.setItem('current_user',JSON.stringify({ id: userData.id ,email: userData.email, first_name: userData.first_name, last_name: userData.last_name, role: userData.role}))
                 sessionStorage.setItem('authorization',response.headers['authorization'].split(' ')[1])
                 setAuthAlert({status: "SUCCESS", message: "Signup successful!"})
             } else {

@@ -1,15 +1,14 @@
 import { useEffect } from "react"
 
 export default function TraderDashboard(props){
-    const { api } = props
+    const { api, currentUserData } = props
     useEffect(()=>{
         getUserPortfolio()
     },[])
     const getUserPortfolio = async() => {
+        console.log(currentUserData)
         try {
-            const response = await api.get("signup", {
-                
-            })
+            const response = await api.get(`trader/${currentUserData.id}/portfolio`)
             if(response.status === 200) {
                 console.log(response.data)
             } else {

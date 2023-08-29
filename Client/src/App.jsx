@@ -11,11 +11,8 @@ import axios from 'axios';
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
   const [ isLoading, setIsLoading ] = useState(false)
-  const [ auth, setAuth ] = useState(()=>{
-    const session_auth = sessionStorage.getItem('authorization')
-    session_auth ? session_auth : ""
-  })
-  const [ currentUserData, setCurrentUserData ] = useState({email: "", first_name: "", last_name: "", role: ""})
+  const [ auth, setAuth ] = useState(sessionStorage.getItem('authorization') ? sessionStorage.getItem('authorization') : "")
+  const [ currentUserData, setCurrentUserData ] = useState(sessionStorage.getItem('current_user') ? JSON.parse(sessionStorage.getItem('current_user')) : {id: "", email: "", first_name: "", last_name: "", role: ""})
   const emailRef = useRef()
   const passwordRef = useRef()
   const navigate = useNavigate()
@@ -37,9 +34,12 @@ function App() {
   useEffect(()=> {
     if(auth){
       currentUserData.role === "TRADER" ?
-        navigate("/dashboard/trader/dashboard") : navigate("dashboard/admin/dashboard")
+        navigate("/dashboard/trader") : navigate("dashboard/admin")
     }
   }, [auth])
+  useEffect(()=>{
+    console.log(currentUserData)
+  },[currentUserData])
   return (
     <Routes>
         <Route index path="/" element={
@@ -67,8 +67,8 @@ function App() {
             isLoading={isLoading}
             setIsLoading={setIsLoading}/>
         }/>
-        <Route path="/dashboard/trader/*" element={<TraderDashboardPage api={api}/>}/>
-        <Route path="/dashboard/admin/*" element={<AdminDashboardPage api={api}/>}/>
+        <Route path="/dashboard/trader" element={<TraderDashboardPage api={api} currentUserData={currentUserData}/>}/>
+        <Route path="/dashboard/admin" element={<AdminDashboardPage api={api} currentUserData={currentUserData}/>}/>
     </Routes>
   )
 }
