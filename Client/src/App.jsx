@@ -67,8 +67,8 @@ function App() {
             isLoading={isLoading}
             setIsLoading={setIsLoading}/>
         }/>
-        <Route path="/dashboard/trader/*" element={<TraderDashboardPage />}/>
-        <Route path="/dashboard/admin/*" element={<AdminDashboardPage />}/>
+        <Route path="/dashboard/trader/*" element={<TraderDashboardPage api={api}/>}/>
+        <Route path="/dashboard/admin/*" element={<AdminDashboardPage api={api}/>}/>
     </Routes>
   )
 }
