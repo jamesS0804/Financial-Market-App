@@ -1,0 +1,11 @@
+* {
+    font-size: 1.1rem;
+}
+h1 {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(180deg, rgb(6.22, 27.69, 124.31) 0%, rgb(19, 173, 192) 100%);
+    background-clip: text;
+    color: transparent;
+    font-family: "Myanmar Khyay-Regular", Helvetica;
+}
