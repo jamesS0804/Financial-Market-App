@@ -1,10 +1,9 @@
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
 import SignupPage from './pages/SignupPage.jsx';
-import TraderDashboardPage from './pages/TraderDashboardPage';
-import AdminDashboardPage from './pages/AdminDashboardPage';
+import TraderDashboardPage from './pages/Trader/TraderDashboardPage';
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import { useState, useRef, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
@@ -38,7 +37,7 @@ function App() {
   useEffect(()=> {
     if(auth){
       currentUserData.role === "TRADER" ?
-        navigate("/dashboard/trader") : navigate("dashboard/admin")
+        navigate("/dashboard/trader/dashboard") : navigate("dashboard/admin/dashboard")
     }
   }, [auth])
   return (
@@ -68,8 +67,8 @@ function App() {
             isLoading={isLoading}
             setIsLoading={setIsLoading}/>
         }/>
-        <Route path="/dashboard/trader" element={<TraderDashboardPage />}/>
-        <Route path="/dashboard/admin" element={<AdminDashboardPage />}/>
+        <Route path="/dashboard/trader/*" element={<TraderDashboardPage />}/>
+        <Route path="/dashboard/admin/*" element={<AdminDashboardPage />}/>
     </Routes>
   )
 }
