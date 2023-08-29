@@ -5,7 +5,8 @@ import TraderMarket from './TraderMarket'
 import TraderPortfolio from './TraderPortfolio'
 import { useState } from 'react'
 
-export default function TraderDashboardPage(){
+export default function TraderDashboardPage(props){
+    const { api, currentUserData } = props
     const [ chosenSidebarOption, setChosenSidebarOption ] = useState()
     const renderMainTraderView = () => {
         switch(chosenSidebarOption){
@@ -14,7 +15,7 @@ export default function TraderDashboardPage(){
             case "PORTFOLIO":
                 return <TraderPortfolio />
             default:
-                return <TraderDashboard />
+                return <TraderDashboard api={api} currentUserData={currentUserData}/>
         }
     }
     return(
