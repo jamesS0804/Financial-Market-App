@@ -2,7 +2,7 @@ class PortfolioController < ApplicationController
     before_action :authenticate_user!
 
     def get_portfolio
-        user = User.find(params[:id])
+        user = User.find(params[:user_id])
         portfolio = user.portfolios.first
 
         render json: {
