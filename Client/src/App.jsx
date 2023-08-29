@@ -43,9 +43,8 @@ function App() {
   }, [auth])
   return (
     <Routes>
-        <Route index path="/" element={<HomePage />}/>
-        <Route path="/login" element={
-          <LoginPage
+        <Route index path="/" element={
+          <HomePage 
             api={api}
             emailRef={emailRef}
             passwordRef={passwordRef} 
