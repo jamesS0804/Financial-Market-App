@@ -58,13 +58,8 @@ export default function LoginPage(props){
     }
     return(
         <>
-            <div>
-                <h1>LoginPage</h1>
-                <Link type="button" to="/">Home</Link>
-                <Link type="button" to="/signup">Signup</Link>
-            </div>
-            <div className="w-25">
-                <Form ref={formRef} validated={validated} onSubmit={processLogin}>
+            <div className="w-100" style={{position: "absolute", top: "55%", border: "1px solid red"}}>
+                <Form ref={formRef} validated={validated} onSubmit={processLogin} style={{border: "1px solid red"}}>
                     <FloatingLabel
                         label="Email address"
                         className="mb-3"
@@ -93,7 +88,7 @@ export default function LoginPage(props){
                     </FloatingLabel>
                 </Form>
                 { authAlert.status && renderAlertVariant() }
-                <Button type="submit" onClick={processLogin}>
+                <Button type="submit" onClick={processLogin} style={{marginLeft: "89%"}}>
                     {
                         isLoading ? 
                             <div>
