@@ -7,6 +7,7 @@ import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import { useState, useRef, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
@@ -43,7 +44,7 @@ function App() {
   return (
     <Routes>
         <Route index path="/" element={
-          <HomePage 
+          <LandingPage 
             api={api}
             emailRef={emailRef}
             passwordRef={passwordRef} 
