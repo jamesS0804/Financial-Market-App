@@ -1,0 +1,217 @@
+.sign-up-page {
+  background-color: #05233f;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.sign-up-page .div {
+  background-color: #05233f;
+  height: 963px;
+  position: relative;
+  width: 1920px;
+}
+
+.sign-up-page .rectangle {
+  background-color: #098695;
+  height: 168px;
+  left: 0;
+  position: absolute;
+  top: 795px;
+  width: 1920px;
+}
+
+.sign-up-page .signup {
+  height: 490px;
+  left: 752px;
+  position: absolute;
+  top: 236px;
+  width: 419px;
+}
+
+.sign-up-page .rectangle-2 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 50px;
+  left: 3px;
+  opacity: 0.2;
+  position: absolute;
+  top: 334px;
+  width: 414px;
+}
+
+.sign-up-page .rectangle-3 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 252px;
+  width: 414px;
+}
+
+.sign-up-page .overlap-group {
+  border-radius: 12px;
+  height: 52px;
+  left: 159px;
+  position: absolute;
+  top: 438px;
+  width: 112px;
+}
+
+.sign-up-page .rectangle-4 {
+  background-color: #13adc0;
+  border-radius: 12px;
+  height: 52px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 112px;
+}
+
+.sign-up-page .text-wrapper {
+  color: #05233f;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 15px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 12px;
+  white-space: nowrap;
+}
+
+.sign-up-page .rectangle-5 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 168px;
+  width: 414px;
+}
+
+.sign-up-page .rectangle-6 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 84px;
+  width: 414px;
+}
+
+.sign-up-page .rectangle-7 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  width: 414px;
+}
+
+.sign-up-page .navbar {
+  height: 66px;
+  left: 40px;
+  position: absolute;
+  top: 37px;
+  width: 1839px;
+}
+
+.sign-up-page .logo {
+  height: 66px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 54px;
+}
+
+.sign-up-page .text-wrapper-2 {
+  color: #ffffff;
+  font-family: "Myanmar Khyay-Regular", Helvetica;
+  font-size: 35px;
+  font-weight: 400;
+  left: 63px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 10px;
+}
+
+.sign-up-page .text-wrapper-3 {
+  color: #ffffff;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 486px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 16px;
+  white-space: nowrap;
+}
+
+.sign-up-page .text-wrapper-4 {
+  color: #ffffff;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 580px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 16px;
+  white-space: nowrap;
+}
+
+.sign-up-page .text-wrapper-5 {
+  color: #ffffff;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 369px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 16px;
+  white-space: nowrap;
+}
+
+.sign-up-page .text-wrapper-6 {
+  color: #ffffff;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 1528px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 16px;
+  white-space: nowrap;
+}
+
+.sign-up-page .text-wrapper-7 {
+  color: #ffffff;
+  font-family: "Almarai", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 1622px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 16px;
+  white-space: nowrap;
+}

@@ -2,6 +2,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import LoginPage from "../LoginPage";
+import SignUpPage from "../SignUpPage/SignUpPage";
 
 export default function LandingPage(props) {
   const { 
