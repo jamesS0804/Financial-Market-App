@@ -1,6 +1,5 @@
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import TraderDashboardPage from './pages/Trader/TraderDashboardPage';
 import { useState, useRef, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
