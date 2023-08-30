@@ -1,17 +1,17 @@
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import TraderDashboardPage from './pages/Trader/TraderDashboardPage';
-import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import { useState, useRef, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 import LandingPage from './pages/LandingPage/LandingPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
+import Dashboard from './pages/Dashboard/Dashboard'
 
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
   const [ isLoading, setIsLoading ] = useState(false)
-  const [ auth, setAuth ] = useState(sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : "")
+  const [ auth, setAuth ] = useState()
   const [ currentUserData, setCurrentUserData ] = useState(sessionStorage.getItem('current_user') ? JSON.parse(sessionStorage.getItem('current_user')) : {id: "", email: "", first_name: "", last_name: "", role: ""})
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -32,11 +32,14 @@ function App() {
       }
     }
   useEffect(()=> {
+    setAuth(sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : "")
     if(auth){
       currentUserData.role === "TRADER" ?
         navigate("/dashboard/trader") : navigate("dashboard/admin")
+    } else {
+      navigate("/")
     }
-  }, [auth])
+  }, [])
   useEffect(()=>{
     console.log(currentUserData)
   },[currentUserData])
@@ -67,8 +70,8 @@ function App() {
             isLoading={isLoading}
             setIsLoading={setIsLoading}/>
         }/>
-        <Route path="/dashboard/trader" element={<TraderDashboardPage api={api} currentUserData={currentUserData}/>}/>
-        <Route path="/dashboard/admin" element={<AdminDashboardPage api={api} currentUserData={currentUserData}/>}/>
+        <Route path="/dashboard/trader" element={<Dashboard api={api} currentUserData={currentUserData}/>}/>
+        {/* <Route path="/dashboard/admin" element={<AdminDashboardPage api={api} currentUserData={currentUserData}/>}/> */}
     </Routes>
   )
 }
