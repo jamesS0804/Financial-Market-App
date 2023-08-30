@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
   const [ isLoading, setIsLoading ] = useState(false)
-  const [ auth, setAuth ] = useState()
+  const [ auth, setAuth ] = useState(sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : "")
   const [ currentUserData, setCurrentUserData ] = useState(sessionStorage.getItem('current_user') ? JSON.parse(sessionStorage.getItem('current_user')) : {id: "", email: "", first_name: "", last_name: "", role: ""})
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -32,14 +32,13 @@ function App() {
       }
     }
   useEffect(()=> {
-    setAuth(sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : "")
     if(auth){
       currentUserData.role === "TRADER" ?
         navigate("/dashboard/trader") : navigate("dashboard/admin")
     } else {
       navigate("/")
     }
-  }, [])
+  }, [currentUserData])
   useEffect(()=>{
     console.log(currentUserData)
   },[currentUserData])

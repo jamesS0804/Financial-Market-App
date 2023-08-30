@@ -1,0 +1,368 @@
+.dashboard {
+  background-color: #83d9e3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.dashboard .div {
+  background-color: #83d9e3;
+  height: 963px;
+  overflow: hidden;
+  position: relative;
+  width: 1920px;
+}
+
+.dashboard .overlap {
+  height: 963px;
+  left: 514px;
+  position: absolute;
+  top: 0;
+  width: 1378px;
+}
+
+.dashboard .logo {
+  height: 963px;
+  left: 40px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 1188px;
+}
+
+.dashboard .cash-wallet {
+  height: 428px;
+  left: 0;
+  position: absolute;
+  top: 183px;
+  width: 1047px;
+}
+
+.dashboard .overlap-group {
+  height: 428px;
+  position: relative;
+  width: 1031px;
+}
+
+.dashboard .rectangle {
+  background-color: #1a636c;
+  border-radius: 12px;
+  height: 426px;
+  left: 0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  width: 1031px;
+}
+
+.dashboard .text-wrapper {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 107px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 380px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-2 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 473px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 381px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-3 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 816px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 376px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-4 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 60px;
+  font-weight: 700;
+  left: 44px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 50px;
+}
+
+.dashboard .text-wrapper-5 {
+  color: #8eecf7;
+  font-family: "Almarai", Helvetica;
+  font-size: 100px;
+  font-weight: 400;
+  left: 44px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 134px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-6 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 50px;
+  font-weight: 400;
+  left: 104px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 315px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-7 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 50px;
+  font-weight: 400;
+  left: 811px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 313px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-8 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 50px;
+  font-weight: 400;
+  left: 476px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 315px;
+  white-space: nowrap;
+}
+
+.dashboard .line {
+  height: 4px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 303px;
+  width: 1030px;
+}
+
+.dashboard .img {
+  height: 121px;
+  left: 372px;
+  object-fit: cover;
+  position: absolute;
+  top: 305px;
+  width: 1px;
+}
+
+.dashboard .line-2 {
+  height: 123px;
+  left: 715px;
+  object-fit: cover;
+  position: absolute;
+  top: 305px;
+  width: 1px;
+}
+
+.dashboard .search-bar {
+  height: 42px;
+  left: 327px;
+  position: absolute;
+  top: 50px;
+  width: 1051px;
+}
+
+.dashboard .overlap-2 {
+  background-color: #1a636c99;
+  border-radius: 12px;
+  height: 42px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 614px;
+}
+
+.dashboard .text-wrapper-9 {
+  color: #ffffff;
+  font-family: var(--font-font-family);
+  font-size: var(--font-font-size);
+  font-style: var(--font-font-style);
+  font-weight: var(--font-font-weight);
+  left: 54px;
+  letter-spacing: var(--font-letter-spacing);
+  line-height: var(--font-line-height);
+  position: absolute;
+  top: 6px;
+  white-space: nowrap;
+}
+
+.dashboard .search {
+  height: 25px;
+  left: 8px;
+  object-fit: cover;
+  position: absolute;
+  top: 8px;
+  width: 24px;
+}
+
+.dashboard .text-wrapper-10 {
+  color: #05233f;
+  font-family: "Almarai", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 842px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 5px;
+  white-space: nowrap;
+}
+
+.dashboard .sidebar {
+  height: 963px;
+  left: -2px;
+  position: absolute;
+  top: 0;
+  width: 424px;
+}
+
+.dashboard .overlap-3 {
+  height: 963px;
+  position: relative;
+  width: 416px;
+}
+
+.dashboard .rectangle-2 {
+  background-color: #05233f;
+  height: 963px;
+  left: 1px;
+  position: absolute;
+  top: 0;
+  width: 414px;
+}
+
+.dashboard .logo-2 {
+  height: 66px;
+  left: 32px;
+  object-fit: cover;
+  position: absolute;
+  top: 41px;
+  width: 54px;
+}
+
+.dashboard .text-wrapper-11 {
+  color: #ffffff;
+  font-family: "Myanmar Khyay-Regular", Helvetica;
+  font-size: 35px;
+  font-weight: 400;
+  left: 103px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 55px;
+}
+
+.dashboard .rectangle-3 {
+  background-color: #13adc0;
+  border-radius: 5px;
+  height: 65px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 323px;
+  width: 414px;
+}
+
+.dashboard .rectangle-4 {
+  background-color: #8eecf7;
+  border-radius: 5px;
+  height: 65px;
+  left: 2px;
+  opacity: 0.2;
+  position: absolute;
+  top: 237px;
+  width: 414px;
+}
+
+.dashboard .rectangle-5 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 65px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 151px;
+  width: 414px;
+}
+
+.dashboard .text-wrapper-12 {
+  color: #ffffff;
+  font-family: "Almarai", Helvetica;
+  font-size: 35px;
+  font-weight: 400;
+  left: 94px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.5;
+  position: absolute;
+  top: 161px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-13 {
+  color: #8eecf7;
+  font-family: "Almarai", Helvetica;
+  font-size: 35px;
+  font-weight: 400;
+  left: 94px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.5;
+  position: absolute;
+  top: 250px;
+  white-space: nowrap;
+}
+
+.dashboard .text-wrapper-14 {
+  color: #8eecf7;
+  font-family: "Almarai", Helvetica;
+  font-size: 35px;
+  font-weight: 400;
+  left: 94px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.5;
+  position: absolute;
+  top: 339px;
+  white-space: nowrap;
+}
+
+.dashboard .line-3 {
+  height: 65px;
+  left: 2px;
+  position: absolute;
+  top: 151px;
+  width: 9px;
+}

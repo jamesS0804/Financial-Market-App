@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar"
 import TraderSideBar from "../../components/TraderSideBar"
-import TraderDashboard from './TraderDashboard'
+import TraderDashboard from '../../components/TraderDashboard'
 import TraderMarket from './TraderMarket'
 import TraderPortfolio from './TraderPortfolio'
 import { useState } from 'react'
