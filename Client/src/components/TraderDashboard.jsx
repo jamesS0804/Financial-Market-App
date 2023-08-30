@@ -30,21 +30,36 @@ export default function TraderDashboard(props){
             console.log(error)
         }
     }
+    const card = {
+        marginTop: "5%", 
+        marginLeft: "5%", 
+        width: "50%", 
+        height: "40%", 
+        backgroundColor: "#1a636c99",
+        border: "none",
+
+    }
     return(
-        <div className="cash-wallet">
-            <div className="overlap-group">
-              <div className="rectangle" />
-              <div className="text-wrapper">Settled Cash</div>
-              <div className="text-wrapper-2">Market Value</div>
-              <div className="text-wrapper-3">Buying Power</div>
-              <div className="text-wrapper-4">Welcome back, {currentUserData.first_name}!</div>
-              <div className="text-wrapper-5">${currentUserPortfolio.market_value}</div>
-              <div className="text-wrapper-6">${currentUserPortfolio.settled_cash}</div>
-              <div className="text-wrapper-7">${currentUserPortfolio.buying_power}</div>
-              <div className="text-wrapper-8">${currentUserPortfolio.market_value}</div>
-              <img className="line" alt="Line" src="/src/assets/img/line-8.svg" />
-              <img className="img" alt="Line" src="/src/assets/img/line-7.svg" />
-              <img className="line-2" alt="Line" src="/src/assets/img/line-6.svg" />
+        <div className="container-fluid h-100" style={{border: "1px solid green"}}>
+            <div className="card" style={card}>
+                <div className="p-5">
+                    <div>Welcome back, {currentUserData.first_name}!</div>
+                    <div>${currentUserPortfolio.market_value}</div>
+                </div>
+                <div className="d-flex">
+                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 1px 0 0"}}>
+                        <div>Settled Cash</div>
+                        <div>${currentUserPortfolio.settled_cash}</div>
+                    </div>
+                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 0 0 0"}}>
+                        <div>Market Value</div>
+                        <div>${currentUserPortfolio.market_value}</div>
+                    </div>
+                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 0 0 1px"}}>
+                        <div>Buying Power</div>
+                        <div>${currentUserPortfolio.buying_power}</div>
+                    </div>
+                </div>
             </div>
         </div>
     )

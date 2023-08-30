@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./style.css";
 import TraderSideBar from "../../components/TraderSideBar";
 import TraderDashboard from "../../components/TraderDashboard";
 import TraderMarket from "../../components/TraderMarket"
@@ -30,17 +29,14 @@ export default function Dashboard (props) {
       }
   }
   return (
-    <div className="dashboard">
-      <div className="div">
-        <div className="overlap">
-          <img className="logo" alt="Logo" src="/src/assets/img/logo-7.png" />
-          <main style={{height: "78%"}}>
+    <div className="d-flex" style={{width: "100dvw", height: "100dvh", border: "1px solid blue"}}>
+      <TraderSideBar setChosenSidebarOption={setChosenSidebarOption}/>
+      <section className="flex-grow-1 d-flex flex-column" style={{border: "1px solid red", backgroundColor: "#13ADC0"}}>
+        <Navbar />
+        <main className="flex-grow-1" style={{height: "78%"}}>
             { renderMainTraderView() }
-          </main>
-          <Navbar />
-        </div>
-        <TraderSideBar setChosenSidebarOption={setChosenSidebarOption}/>
-      </div>
+        </main>
+      </section>
     </div>
   );
 };
