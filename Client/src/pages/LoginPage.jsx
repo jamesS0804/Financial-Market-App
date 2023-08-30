@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { Form, Button, FloatingLabel, Spinner } from 'react-bootstrap'
 import { useState, useRef, useEffect } from "react";
 
@@ -12,7 +11,6 @@ export default function LoginPage(props){
         renderAlertVariant,
         isLoading,
         setIsLoading,
-        auth,
         setAuth,
         setCurrentUserData
     } = props
@@ -59,8 +57,8 @@ export default function LoginPage(props){
     }
     return(
         <>
-            <div className="w-100" style={{position: "absolute", top: "55%", border: "1px solid red"}}>
-                <Form ref={formRef} validated={validated} onSubmit={processLogin} style={{border: "1px solid red"}}>
+            <div className="w-100" style={{position: "absolute", top: "55%"}}>
+                <Form ref={formRef} validated={validated} onSubmit={processLogin}>
                     <FloatingLabel
                         label="Email address"
                         className="mb-3"
@@ -89,7 +87,7 @@ export default function LoginPage(props){
                     </FloatingLabel>
                 </Form>
                 { authAlert.status && renderAlertVariant() }
-                <Button type="submit" onClick={processLogin} style={{marginLeft: "89%"}}>
+                <Button type="submit" onClick={processLogin} style={{fontSize: "1.5rem", marginLeft: "86%"}}>
                     {
                         isLoading ? 
                             <div>
