@@ -1,12 +1,12 @@
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import SignupPage from './pages/SignupPage.jsx';
 import TraderDashboardPage from './pages/Trader/TraderDashboardPage';
 import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import { useState, useRef, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 import LandingPage from './pages/LandingPage/LandingPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
@@ -22,11 +22,11 @@ function App() {
   const renderAlertVariant = () => {
       switch(authAlert.status) {
           case 'SUCCESS':
-              return <Alert variant='success'>{authAlert.message}</Alert>;
+              return <Alert variant='success' style={{textAlign: "center"}}>{authAlert.message}</Alert>;
           case 'ERROR':
-              return <Alert variant='danger' >{authAlert.message}</Alert>;               
+              return <Alert variant='danger' style={{textAlign: "center"}}>{authAlert.message}</Alert>;               
           case 'WARNING':
-              return <Alert variant='warning'>{authAlert.message}</Alert>;
+              return <Alert variant='warning'style={{textAlign: "center"}}>{authAlert.message}</Alert>;
           default:
               return null;
       }
@@ -57,7 +57,7 @@ function App() {
             setCurrentUserData={setCurrentUserData}/>
         }/>
         <Route path="/signup" element={
-          <SignupPage 
+          <SignUpPage 
             api={api}
             emailRef={emailRef}
             passwordRef={passwordRef}
