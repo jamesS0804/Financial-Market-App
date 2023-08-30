@@ -1,0 +1,41 @@
+.logo-2 {
+    height: 66px;
+    left: 32px;
+    object-fit: cover;
+    position: absolute;
+    top: 41px;
+    width: 54px;
+}
+.text-wrapper-11 {
+    color: #ffffff;
+    font-family: "Myanmar Khyay-Regular", Helvetica;
+    font-size: 35px;
+    font-weight: 400;
+    left: 103px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 55px;
+}
+.custom-button {
+    position: relative;
+    background-color: #093F5A;
+    font-size: 2rem; 
+    padding: 0.25em 2em 0.25em 2em; 
+    color: #4C95A9; 
+    border: none;
+}
+.custom-button:hover {
+    background-color: #385066!important;
+    color: #9BA7B3!important;
+}
+.custom-button:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2%;
+    height: 100%;
+    background-color: #8EECF8;
+    color: white;
+}
