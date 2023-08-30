@@ -44,13 +44,13 @@ export default function LoginPage(props){
                 setAuth(response.headers['authorization'])
                 sessionStorage.setItem('current_user',JSON.stringify({ id: userData.id ,email: userData.email, first_name: userData.first_name, last_name: userData.last_name, role: userData.role}))
                 sessionStorage.setItem('authToken',response.headers['authorization'].split(' ')[1])
-                setAuthAlert({status: "SUCCESS", message: "Signup successful!"})
+                setAuthAlert({status: "SUCCESS", message: "Signin successful!"})
             } else {
-                setAuthAlert({status: "ERROR", message: "Signup failed!"})
+                setAuthAlert({status: "ERROR", message: "Signin failed!"})
             }
         } catch(error) {
             console.log(error)
-            setAuthAlert({status: "WARNING", message: error.response.data})
+            setAuthAlert({status: "ERROR", message: error.response.data})
         }
         setIsLoading(false)
         setValidated(true)
@@ -87,16 +87,18 @@ export default function LoginPage(props){
                     </FloatingLabel>
                 </Form>
                 { authAlert.status && renderAlertVariant() }
-                <Button type="submit" onClick={processLogin} style={{fontSize: "1.5rem", marginLeft: "86%"}}>
-                    {
-                        isLoading ? 
-                            <div>
-                                <p>Logging in..</p>
-                                <Spinner animation="border"/>
-                            </div>
-                            :
-                            <span>Login</span>
-                    }
+                <Button type="submit" onClick={processLogin} style={{marginLeft: "65%", width: "35%"}}>
+                    <div className="px-3 py-1 d-flex gap-2 justify-content-center align-items-center">
+                        {
+                            isLoading ? 
+                                <>
+                                    <p className="m-0" style={{fontSize: "1.2rem"}}>Logging in..</p>
+                                    <Spinner animation="border"/>
+                                </>
+                                :
+                            <p className="m-0" style={{fontSize: "1.5rem"}}>Login</p>
+                        }
+                    </div>
                 </Button>
             </div>
         </>
