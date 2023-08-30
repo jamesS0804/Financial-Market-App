@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "admin/view_all_transactions" => "admins#view_all_transactions"
   
   get "get_data" => "unit#get_data"
+  get "get_stored_data" => "unit#get_stored_data"
 
   get "trader/:user_id/portfolio" => "portfolio#get_portfolio"
 
