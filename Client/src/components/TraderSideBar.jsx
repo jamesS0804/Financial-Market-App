@@ -1,4 +1,3 @@
-import logo from "../assets/HomePage/logo.png"
 import { Button } from 'react-bootstrap'
 
 export default function TraderSideBar(props){
