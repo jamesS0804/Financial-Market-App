@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import authenticated_api from "../../utils/authenticated_api"
 
 export default function TraderDashboard(props){
     const { api, currentUserData } = props
@@ -8,7 +9,7 @@ export default function TraderDashboard(props){
     const getUserPortfolio = async() => {
         console.log(currentUserData)
         try {
-            const response = await api.get(`trader/${currentUserData.id}/portfolio`)
+            const response = await authenticated_api.get(`trader/${currentUserData.id}/portfolio`)
             if(response.status === 200) {
                 console.log(response.data)
             } else {
