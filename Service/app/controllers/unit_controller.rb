@@ -41,4 +41,11 @@ class UnitController < ApplicationController
             }, status: :ok
           end
     end
+    def get_stored_data
+        all_stored_data = Unit.all
+        render json: {
+                status: { code: 200, message: 'Stock data obtained.' },
+                data: all_stored_data
+            }, status: :ok
+    end
 end
