@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./style.css";
 import TraderSideBar from "../../components/TraderSideBar";
 import TraderDashboard from "../../components/TraderDashboard";
-import TraderMarket from "../Trader/TraderMarket";
+import TraderMarket from "../../components/TraderMarket"
 import TraderPortfolio from "../Trader/TraderPortfolio";
 import Navbar from "../../components/Navbar";
 
@@ -34,7 +34,7 @@ export default function Dashboard (props) {
       <div className="div">
         <div className="overlap">
           <img className="logo" alt="Logo" src="/src/assets/img/logo-7.png" />
-          <main>
+          <main style={{height: "78%"}}>
             { renderMainTraderView() }
           </main>
           <Navbar />
