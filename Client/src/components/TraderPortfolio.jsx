@@ -1,18 +1,39 @@
 import { useEffect, useState } from "react"
+import authenticated_api from "../utils/authenticated_api"
+import { Button } from "react-bootstrap"
 
-export default function TraderPortfolio(){
+export default function TraderPortfolio(props){
+    const { currentUserData } = props
     const [ portfolioTransactions, setPortfolioTransactions ] = useState([])
+    useEffect(()=> {
+        getTransactionsData()
+    },[])
+    const getTransactionsData = async() => {
+        console.log(currentUserData)
+        try {
+            const response = await authenticated_api.get(`trader/${currentUserData.id}/portfolio/transactions`)
+            if(response.status === 200){
+                console.log(response.data.data)
+                const transactionsData = response.data.data
+                setPortfolioTransactions(transactionsData)
+            } else {
+                console.log(response.data.status.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return(
         <div className="container-fluid p-0" style={{border: "1px solid red", overflowY: "auto", overflowX: "hidden", height: "100%", maxHeight: "873px", display: "block"}}>
             <h1 className="px-3">My Portfolio</h1>
-            <table className="container-fluid" style={{borderCollapse: "collapse", border: "2px solid green", height: "790px"}}>
+            <table className="container-fluid" style={{borderCollapse: "collapse", border: "2px solid green"}}>
                 <thead className="sticky-header" style={{borderBottom: "1px solid black"}}>
                     <tr>
-                        <th id="market-name" style={{width: "30%", padding: "0.5em 1em"}}>Asset</th>
-                        <th id="market-change">Amount</th>
-                        <th id="market-buy">Units</th>
-                        <th id="market-sell">Status</th>
-                        <th id="market-average-daily-volume">Actions</th>
+                        <th id="transactions-asset" style={{width: "30%", padding: "0.5em 1em"}}>Asset</th>
+                        <th id="transactions-amount">Amount</th>
+                        <th id="transactions-units">Units</th>
+                        <th id="transactions-status">Status</th>
+                        <th id="transactions-actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody style={{overflowY: "auto"}}>
@@ -25,13 +46,20 @@ export default function TraderPortfolio(){
                         </tr>
                         :
                         portfolioTransactions.map((transaction) => {
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            return(
+                                <tr key={transaction.id} style={{height: "10px",border: "1px solid black", borderWidth: "1px 0 1px 0"}}>
+                                    <td headers="transactions-asset">
+                                        <div>{transaction.transaction_type} {transaction.symbol}</div>
+                                        <div>{transaction.created_at}</div>
+                                    </td>
+                                    <td headers="transactions-amount">${transaction.price}</td>
+                                    <td headers="transactions-units">{transaction.quantity}</td>
+                                    <td headers="transactions-status" style={{backgroundColor: "#428E98"}}>{transaction.status}</td>
+                                    <td headers="transactions-actions">
+                                        <Button>Cancel</Button>
+                                    </td>
+                                </tr>
+                            )
                         })
                     }
                 </tbody>
