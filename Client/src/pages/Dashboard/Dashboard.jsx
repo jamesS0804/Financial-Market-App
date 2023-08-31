@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 
 export default function Dashboard (props) {
   const { api, currentUserData } = props
+  const [ navBarHeight, setNavBarHeight ] = useState(0)
   const [ chosenSidebarOption, setChosenSidebarOption ] = useState()
   const [ currentUserPortfolio, setCurrentUserPortfolio ] = useState({
     settled_cash: "",
@@ -16,24 +17,28 @@ export default function Dashboard (props) {
   const renderMainTraderView = () => {
       switch(chosenSidebarOption){
           case "MARKET":
-              return <TraderMarket />
+              return <TraderMarket 
+                        navBarHeight={navBarHeight}
+                      />
           case "PORTFOLIO":
-              return <TraderPortfolio />
+              return <TraderPortfolio 
+                        navBarHeight={navBarHeight}
+                      />
           default:
               return <TraderDashboard 
                         api={api}
                         currentUserData={currentUserData}
                         currentUserPortfolio={currentUserPortfolio}
-                        setCurrentUserPortfolio={setCurrentUserPortfolio}
+                        setCurrentUserPortfolio={setCurrentUserPortfolio} 
                       />
       }
   }
   return (
-    <div className="d-flex" style={{width: "100dvw", height: "100dvh", border: "1px solid blue"}}>
+    <div className="d-flex" style={{width: "100dvw", height: "100dvh"}}>
       <TraderSideBar setChosenSidebarOption={setChosenSidebarOption}/>
-      <section className="flex-grow-1 d-flex flex-column" style={{border: "1px solid red", backgroundColor: "#13ADC0"}}>
-        <Navbar />
-        <main className="flex-grow-1" style={{height: "78%"}}>
+      <section className="flex-grow-1 d-flex flex-column" style={{backgroundColor: "#83D9E3"}}>
+        <Navbar setNavBarHeight={setNavBarHeight}/>
+        <main className="flex-grow-1">
             { renderMainTraderView() }
         </main>
       </section>

@@ -6,3 +6,8 @@
   --font-letter-spacing: 0px;
   --font-line-height: normal;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
