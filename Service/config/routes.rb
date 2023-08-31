@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "get_stored_data" => "unit#get_stored_data"
 
   get "trader/:user_id/portfolio" => "portfolio#get_portfolio"
+  get "trader/:used_id/portfolio/transactions" => "portfolio#get_all_transactions"
 
   post "portfolios/:portfolio_id/transactions/market_order/buy" => "transactions#process_market_order_buy"
   post "portfolios/:portfolio_id/transactions/market_order/sell" => "transactions#process_market_order_sell"
