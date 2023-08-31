@@ -12,8 +12,8 @@ export default function TraderMarket(props){
         try{
             const response = await authenticated_api.get("get_stored_data")
             if(response.status === 200) {
-                console.log(response.data.data)
-                setStockData(response.data.data)
+                const allStockData = response.data.data
+                setStockData(allStockData)
             } else {
                 console.log(response.status)
             }
