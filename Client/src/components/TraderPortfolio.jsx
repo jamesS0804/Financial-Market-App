@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import authenticated_api from "../utils/authenticated_api"
 import { Button } from "react-bootstrap"
+import "./TraderPortfolio.css"
 
 export default function TraderPortfolio(props){
     const { currentUserData } = props
@@ -47,14 +48,22 @@ export default function TraderPortfolio(props){
                         :
                         portfolioTransactions.map((transaction) => {
                             return(
-                                <tr key={transaction.id} style={{height: "10px",border: "1px solid black", borderWidth: "1px 0 1px 0"}}>
+                                <tr key={transaction.id} style={{
+                                    height: "10px", border: "1px solid black", borderWidth: "1px 0 1px 0",
+                                }}>
                                     <td headers="transactions-asset">
                                         <div>{transaction.transaction_type} {transaction.symbol}</div>
                                         <div>{transaction.created_at}</div>
                                     </td>
                                     <td headers="transactions-amount">${transaction.price}</td>
                                     <td headers="transactions-units">{transaction.quantity}</td>
-                                    <td headers="transactions-status" style={{backgroundColor: "#428E98"}}>{transaction.status}</td>
+                                    <td headers="transactions-status">
+                                        <div className="d-flex justify-content-center align-items-center" style={{
+                                            backgroundColor: "#428E98", padding: "0.25em 1em 0.25em 1em",
+                                            borderRadius: "1em", width: "fit-content", color: "white",
+                                            fontWeight: "bold"
+                                        }}>{transaction.status}</div>
+                                    </td>
                                     <td headers="transactions-actions">
                                         <Button>Cancel</Button>
                                     </td>
