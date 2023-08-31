@@ -23,6 +23,7 @@ export default function Dashboard (props) {
           case "PORTFOLIO":
               return <TraderPortfolio 
                         navBarHeight={navBarHeight}
+                        currentUserData={currentUserData}
                       />
           default:
               return <TraderDashboard 
