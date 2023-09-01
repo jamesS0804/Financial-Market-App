@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_27_004803) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_005017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,11 +37,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_004803) do
     t.string "status", null: false
     t.string "symbol", null: false
     t.integer "quantity", null: false
-    t.decimal "price", null: false
+    t.decimal "price_per_share", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "portfolio_id", null: false
     t.string "market_name"
+    t.decimal "amount"
     t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
   end
 
