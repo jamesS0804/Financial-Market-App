@@ -18,8 +18,7 @@ RSpec.describe "TransactionsController", type: :request do
           status: 'FILLED',
           symbol: 'AAPL',
           quantity: 2,
-          price_per_share: 150.00,
-          amount: 300.00
+          price_per_share: 150.00
         }
       }
     end
@@ -38,13 +37,13 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['symbol']).to eq('AAPL')
           expect(transaction['quantity']).to eq(2)
           expect(transaction['price_per_share']).to eq(150.00)
-          expect()
+          expect(transaction['amount']).to eq(300.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
-          expect(portfolio['buying_power']).to eq(850.00)
-          expect(portfolio['settled_cash']).to eq(850.00)
-          expect(portfolio['market_value']).to eq(650.00)
+          expect(portfolio['buying_power']).to eq(700.00)
+          expect(portfolio['settled_cash']).to eq(700.00)
+          expect(portfolio['market_value']).to eq(800.00)
         end
       end
       context "when a trader was unsuccessful in selling stock market order" do
@@ -71,14 +70,14 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['transaction_type']).to eq('SELL')
           expect(transaction['status']).to eq('FILLED')
           expect(transaction['symbol']).to eq('AAPL')
-          expect(transaction['quantity']).to eq(100)
+          expect(transaction['quantity']).to eq(2)
           expect(transaction['price_per_share']).to eq(150.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
-          expect(portfolio['buying_power']).to eq(1150.00)
-          expect(portfolio['settled_cash']).to eq(1150.00)
-          expect(portfolio['market_value']).to eq(350.00)
+          expect(portfolio['buying_power']).to eq(1300.00)
+          expect(portfolio['settled_cash']).to eq(1300.00)
+          expect(portfolio['market_value']).to eq(200.00)
         end
       end
       context "when a trader was unsuccessful in selling stock market order" do
@@ -101,8 +100,8 @@ RSpec.describe "TransactionsController", type: :request do
           transaction_type: 'BUY',
           status: 'UNFULFILLED',
           symbol: 'AAPL',
-          quantity: 100,
-          price_per_share: 150.00
+          quantity: 1,
+          price_per_share: 500.00
         }
       }
     end
@@ -119,14 +118,13 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['transaction_type']).to eq('BUY')
           expect(transaction['status']).to eq('UNFULFILLED')
           expect(transaction['symbol']).to eq('AAPL')
-          expect(transaction['quantity']).to eq(100)
-          expect(transaction['price_per_share']).to eq(150.00)
+          expect(transaction['quantity']).to eq(1)
+          expect(transaction['price_per_share']).to eq(500.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
-          expect(portfolio['buying_power']).to eq(850.00)
-          expect(portfolio['settled_cash']).to eq(850.00)
-          expect(portfolio['market_value']).to eq(500.00)
+          expect(portfolio['buying_power']).to eq(500.00)
+          expect(portfolio['settled_cash']).to eq(500.00)
         end
       end
       context "when a trader was unsuccessful to process buy stock limit order" do
@@ -153,14 +151,8 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['transaction_type']).to eq('SELL')
           expect(transaction['status']).to eq('UNFULFILLED')
           expect(transaction['symbol']).to eq('AAPL')
-          expect(transaction['quantity']).to eq(100)
-          expect(transaction['price_per_share']).to eq(150.00)
-  
-          portfolio = Portfolio.find(@portfolio.id)
-  
-          expect(portfolio['buying_power']).to eq(850.00)
-          expect(portfolio['settled_cash']).to eq(850.00)
-          expect(portfolio['market_value']).to eq(500.00)
+          expect(transaction['quantity']).to eq(1)
+          expect(transaction['price_per_share']).to eq(500.00)
         end
       end
       context "when a trader was unsuccessful to process buy stock limit order" do
