@@ -6,11 +6,11 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            price = BigDecimal(transaction_params[:price])
+            amount = BigDecimal(transaction_params[:amount])
             portfolio.update(
-                market_value: portfolio.market_value + price, 
-                settled_cash: portfolio.settled_cash - price,
-                buying_power: portfolio.buying_power - price
+                market_value: portfolio.market_value + amount, 
+                settled_cash: portfolio.settled_cash - amount,
+                buying_power: portfolio.buying_power - amount
             )
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
@@ -31,11 +31,11 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            price = BigDecimal(transaction_params[:price])
+            amount = BigDecimal(transaction_params[:amount])
             portfolio.update(
-                market_value: portfolio.market_value - price, 
-                settled_cash: portfolio.settled_cash + price,
-                buying_power: portfolio.buying_power + price
+                market_value: portfolio.market_value - amount, 
+                settled_cash: portfolio.settled_cash + amount,
+                buying_power: portfolio.buying_power + amount
             )
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
@@ -56,10 +56,10 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            price = BigDecimal(transaction_params[:price])
+            amount = BigDecimal(transaction_params[:amount])
             portfolio.update( 
-                settled_cash: portfolio.settled_cash - price,
-                buying_power: portfolio.buying_power - price
+                settled_cash: portfolio.settled_cash - amount,
+                buying_power: portfolio.buying_power - amount
             )
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
@@ -80,10 +80,10 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            price = BigDecimal(transaction_params[:price])
+            amount = BigDecimal(transaction_params[:amount])
             portfolio.update( 
-                settled_cash: portfolio.settled_cash - price,
-                buying_power: portfolio.buying_power - price
+                settled_cash: portfolio.settled_cash - amount,
+                buying_power: portfolio.buying_power - amount
             )
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
@@ -102,6 +102,6 @@ class TransactionsController < ApplicationController
     private
 
     def transaction_params
-        params.require(:transaction).permit(:market_name, :symbol, :price, :market_order_type, :status, :quantity, :transaction_type)
+        params.require(:transaction).permit(:market_name, :symbol, :price_per_share, :amount, :market_order_type, :status, :quantity, :transaction_type)
     end
 end
