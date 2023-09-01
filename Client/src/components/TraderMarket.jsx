@@ -1,13 +1,28 @@
 import { useState, useEffect } from "react";
 import authenticated_api from "../utils/authenticated_api";
 import { Button } from "react-bootstrap";
+import StockModal from "./StockModal";
 
 export default function TraderMarket(props){
+    const { currentUserPortfolio } = props
     const [ stockData, setStockData ] = useState([])
-
+    const [ showStockModal, setShowStockModal ] = useState(false)
+    const [ marketStockData, setMarketStockData ] = useState({
+        symbol: "",
+        amount: "",
+        transaction_type: ""
+    })
     useEffect(()=>{
         getStockData()
     },[])
+    const openStockModal = (symbol, amount, transaction_type) => {
+        setMarketStockData({
+            symbol: symbol,
+            amount: amount,
+            transaction_type: transaction_type
+        })
+        setShowStockModal(true)
+    }
     const getStockData = async() => {
         try{
             const response = await authenticated_api.get("get_stored_data")
@@ -23,6 +38,13 @@ export default function TraderMarket(props){
     }
     return (
         <div className="container-fluid p-0" style={{overflowY: "scroll", overflowX: "hidden", maxHeight: "873px", display: "block"}}>
+            <StockModal 
+                showStockModal={showStockModal}
+                setShowStockModal={setShowStockModal}
+                marketStockData={marketStockData}
+                setMarketStockData={setMarketStockData}
+                currentUserPortfolio={currentUserPortfolio}
+            />
             <h1 className="px-3">Market</h1>
             <table className="container-fluid" style={{borderCollapse: "collapse"}}>
                 <thead className="sticky-header" style={{borderBottom: "1px solid black",}}>
@@ -53,7 +75,7 @@ export default function TraderMarket(props){
                                     </div>
                                 </td>
                                 <td headers="market-buy" >
-                                    <Button style={{position: "relative", width: "55%", paddingLeft: "2em"}}>
+                                    <Button onClick={()=>openStockModal(stock.symbol, stock.price, "BUY")} style={{position: "relative", width: "55%", paddingLeft: "2em"}}>
                                         <span style={{
                                             position: "absolute", left: 0, top: 0, height: "100%",
                                             display: "flex", justifyContent: "center", alignItems: "center",
@@ -62,11 +84,11 @@ export default function TraderMarket(props){
                                         }}>
                                             <span>B</span>
                                         </span>
-                                        <span style={{}}>{stock.price}</span>
+                                        <span>{stock.price}</span>
                                     </Button>
                                 </td>
                                 <td headers="market-sell">
-                                <Button style={{position: "relative", width: "55%", paddingLeft: "2em"}}>
+                                    <Button onClick={()=>openStockModal(stock.symbol, stock.price, "SELL")} style={{position: "relative", width: "55%", paddingLeft: "2em"}}>
                                         <span style={{
                                             position: "absolute", left: 0, top: 0, height: "100%",
                                             display: "flex", justifyContent: "center", alignItems: "center",
@@ -75,7 +97,7 @@ export default function TraderMarket(props){
                                         }}>
                                             <span>S</span>
                                         </span>
-                                        <span style={{}}>{stock.price}</span>
+                                        <span>{stock.price}</span>
                                     </Button>
                                 </td>
                                 <td headers="market-average-daily-volume">
