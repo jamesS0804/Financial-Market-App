@@ -10,6 +10,7 @@ export default function Dashboard (props) {
   const [ navBarHeight, setNavBarHeight ] = useState(0)
   const [ chosenSidebarOption, setChosenSidebarOption ] = useState()
   const [ currentUserPortfolio, setCurrentUserPortfolio ] = useState({
+    id: "",
     settled_cash: "",
     buying_power: "",
     market_value: ""
@@ -19,6 +20,7 @@ export default function Dashboard (props) {
           case "MARKET":
               return <TraderMarket 
                         navBarHeight={navBarHeight}
+                        currentUserPortfolio={currentUserPortfolio}
                       />
           case "PORTFOLIO":
               return <TraderPortfolio 
