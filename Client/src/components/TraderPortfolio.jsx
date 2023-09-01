@@ -32,6 +32,7 @@ export default function TraderPortfolio(props){
                     <tr>
                         <th id="transactions-asset" style={{width: "30%", padding: "0.5em 1em"}}>Asset</th>
                         <th id="transactions-amount">Amount</th>
+                        <th id="transactions-price-per-share">Price Per Share</th>
                         <th id="transactions-units">Units</th>
                         <th id="transactions-status">Status</th>
                         <th id="transactions-actions">Actions</th>
@@ -55,7 +56,8 @@ export default function TraderPortfolio(props){
                                         <div>{transaction.transaction_type} {transaction.symbol}</div>
                                         <div>{transaction.created_at}</div>
                                     </td>
-                                    <td headers="transactions-amount">${transaction.price}</td>
+                                    <td headers="transactions-amount">${transaction.amount}</td>
+                                    <td headers="transactions-price-per-share">${transaction.price_per_share}</td>
                                     <td headers="transactions-units">{transaction.quantity}</td>
                                     <td headers="transactions-status">
                                         <div className="d-flex justify-content-center align-items-center" style={{
