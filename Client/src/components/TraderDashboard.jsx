@@ -19,6 +19,7 @@ export default function TraderDashboard(props){
                 console.log(response.data.data)
                 const portfolio_data = response.data.data
                 setCurrentUserPortfolio({
+                    id: portfolio_data.id,
                     settled_cash: portfolio_data.settled_cash,
                     buying_power: portfolio_data.buying_power,
                     market_value: portfolio_data.market_value
