@@ -17,8 +17,9 @@ RSpec.describe "TransactionsController", type: :request do
           transaction_type: 'BUY',
           status: 'FILLED',
           symbol: 'AAPL',
-          quantity: 100,
-          price: 150.00
+          quantity: 2,
+          price_per_share: 150.00,
+          amount: 300.00
         }
       }
     end
@@ -35,8 +36,9 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['transaction_type']).to eq('BUY')
           expect(transaction['status']).to eq('FILLED')
           expect(transaction['symbol']).to eq('AAPL')
-          expect(transaction['quantity']).to eq(100)
-          expect(transaction['price']).to eq(150.00)
+          expect(transaction['quantity']).to eq(2)
+          expect(transaction['price_per_share']).to eq(150.00)
+          expect()
   
           portfolio = Portfolio.find(@portfolio.id)
   
@@ -70,7 +72,7 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['status']).to eq('FILLED')
           expect(transaction['symbol']).to eq('AAPL')
           expect(transaction['quantity']).to eq(100)
-          expect(transaction['price']).to eq(150.00)
+          expect(transaction['price_per_share']).to eq(150.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
@@ -81,7 +83,7 @@ RSpec.describe "TransactionsController", type: :request do
       end
       context "when a trader was unsuccessful in selling stock market order" do
         it "should send a JSON response with a transaction failed message" do
-          @transaction_params[:transaction][:price] = -1500.00
+          @transaction_params[:transaction][:price_per_share] = -1500.00
           post "/portfolios/#{@portfolio.id}/transactions/market_order/sell", params: @transaction_params
   
           expect(response).to have_http_status(:unprocessable_entity)
@@ -100,7 +102,7 @@ RSpec.describe "TransactionsController", type: :request do
           status: 'UNFULFILLED',
           symbol: 'AAPL',
           quantity: 100,
-          price: 150.00
+          price_per_share: 150.00
         }
       }
     end
@@ -118,7 +120,7 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['status']).to eq('UNFULFILLED')
           expect(transaction['symbol']).to eq('AAPL')
           expect(transaction['quantity']).to eq(100)
-          expect(transaction['price']).to eq(150.00)
+          expect(transaction['price_per_share']).to eq(150.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
@@ -152,7 +154,7 @@ RSpec.describe "TransactionsController", type: :request do
           expect(transaction['status']).to eq('UNFULFILLED')
           expect(transaction['symbol']).to eq('AAPL')
           expect(transaction['quantity']).to eq(100)
-          expect(transaction['price']).to eq(150.00)
+          expect(transaction['price_per_share']).to eq(150.00)
   
           portfolio = Portfolio.find(@portfolio.id)
   
