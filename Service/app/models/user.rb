@@ -14,12 +14,4 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :role, presence: true
-
-  private
-
-  def self.serialize_pending_traders
-    pending_traders.map do |user|
-      UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
-    end
-  end
 end
