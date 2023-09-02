@@ -1,4 +1,4 @@
-import { Modal, Form, InputGroup, FloatingLabel, Button, Spinner } from "react-bootstrap"
+import { Modal, Form, ButtonGroup, ToggleButton, FloatingLabel, Button, Spinner, InputGroup } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react"
 import authenticated_api from "../../utils/authenticated_api"
 
@@ -20,14 +20,26 @@ export default function TraderInfoModal(props){
     const lastNameRef = useRef()
     const passwordRef = useRef()
     const [ isLoadingModal, setIsLoadingModal ] = useState(false)
+    const [ roleRadioValue, setRoleRadioValue ] = useState("0");
+    const [ roleName, setRoleName ] = useState("")
+    const roles = [
+        { name: 'Trader', value: '0' },
+        { name: 'Admin', value: '1' }
+    ];
+
     useEffect(()=> {
         setAuthAlert({status: "", message: ""})
         if(isLoadingModal) setIsLoadingModal(false)
     }, [showTraderModal])
 
+    useEffect(()=>{
+        setRoleName(roles[roleRadioValue].name.toUpperCase())
+    }, [roleRadioValue])
+
     const closeTraderModal = () => {
         setShowTraderModal(false)
     }
+
     const createTrader = async(e) => {
         e.preventDefault()
         setIsLoadingModal(true)
@@ -38,7 +50,7 @@ export default function TraderInfoModal(props){
                     first_name: firstNameRef.current.value,
                     last_name: lastNameRef.current.value,
                     password: passwordRef.current.value,
-                    role: "TRADER"
+                    role: roleName
                 }
             })
             if(response.status === 200){
@@ -66,7 +78,7 @@ export default function TraderInfoModal(props){
                     email: emailRef.current.value,
                     first_name: firstNameRef.current.value,
                     last_name: lastNameRef.current.value,
-                    role: "TRADER"
+                    role: roleName
                 }
             })
             if(response.status === 200){
@@ -137,6 +149,28 @@ export default function TraderInfoModal(props){
                             <Form.Control ref={passwordRef} style={{marginTop: "8px"}} type="password" placeholder="name@example.com" />
                         </FloatingLabel>
                     }
+                    <InputGroup className="d-flex flex-column gap-2">
+                        <h1 style={{fontSize: "1rem"}}>Role</h1>
+                        <ButtonGroup>
+                            {roles.map((role, index) => (
+                                <ToggleButton
+                                    key={index}
+                                    id={`role-${index}`}
+                                    type="radio"
+                                    variant={index % 2 ? 'outline-primary' : 'outline-primary'}
+                                    name="role"
+                                    value={role.value}
+                                    checked={roleRadioValue === role.value}
+                                    onChange={(e) => {
+                                        setRoleRadioValue(e.currentTarget.value)
+                                    }}
+                                    style={{fontSize: "1.5rem", padding: "0 2em 0 2em"}}
+                                >
+                                    {role.name}
+                                </ToggleButton>
+                            ))}
+                        </ButtonGroup>
+                    </InputGroup>
                     { authAlert.status && renderAlertVariant() }
                     <Button style={{width: "100%", marginTop: "2rem"}} onClick={(e)=> {variant === "CREATE" ? createTrader(e) : updateTrader(e)}}>
                         {
