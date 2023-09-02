@@ -6,6 +6,7 @@ import axios from 'axios';
 import LandingPage from './pages/LandingPage/LandingPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import Dashboard from './pages/Dashboard/Dashboard'
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 
 function App() {
   const [ authAlert, setAuthAlert ] = useState({status: '', message: ''})
@@ -23,7 +24,15 @@ function App() {
           case 'SUCCESS':
               return <Alert variant='success' style={{textAlign: "center"}}>{authAlert.message}</Alert>;
           case 'ERROR':
-              return <Alert variant='danger' style={{textAlign: "center"}}>{authAlert.message}</Alert>;               
+              return <Alert variant='danger' className='d-flex flex-column gap-2' style={{textAlign: "center"}}>
+                        {
+                            authAlert.message instanceof Array ?
+                            authAlert.message.map((message, index) => (
+                              <div key={index}>{message}</div>
+                            ))
+                              : <div>{authAlert.message}</div>
+                        }
+                      </Alert>;               
           case 'WARNING':
               return <Alert variant='warning'style={{textAlign: "center"}}>{authAlert.message}</Alert>;
           default:
@@ -69,7 +78,13 @@ function App() {
             setIsLoading={setIsLoading}/>
         }/>
         <Route path="/dashboard/trader" element={<Dashboard api={api} currentUserData={currentUserData}/>}/>
-        {/* <Route path="/dashboard/admin" element={<AdminDashboardPage api={api} currentUserData={currentUserData}/>}/> */}
+        <Route path="/dashboard/admin" element={<AdminDashboardPage 
+          setIsLoading={setIsLoading}
+          setAuthAlert={setAuthAlert}
+          renderAlertVariant={renderAlertVariant}
+          authAlert={authAlert}
+          isLoading={isLoading}
+        />}/>
     </Routes>
   )
 }
