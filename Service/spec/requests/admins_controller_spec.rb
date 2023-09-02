@@ -33,7 +33,7 @@ RSpec.describe "Admins", type: :request do
 
           expect(response).to have_http_status(:unprocessable_entity)
           json_response = JSON.parse(response.body)
-          expect(json_response['status']['message']).to eq('Email has already been taken')
+          expect(json_response['status']['message']).to eq(['Email has already been taken'])
         end
       end
     end
@@ -56,6 +56,9 @@ RSpec.describe "Admins", type: :request do
           expect(json_response['data']['password']).to eq("updated_password")
           expect(json_response['data']['first_name']).to eq("updated_first_name")
           expect(json_response['data']['last_name']).to eq("updated_last_name")
+
+          user = User.find(non_admin_user.id)
+          expect(user.email).to eq("updated_email@example.com")
         end
       end
       describe "when an admin fails to edit a trader'info" do
@@ -70,7 +73,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("Email can't be blank")
+            expect(json_response['status']['message']).to eq(["Email can't be blank"])
           end
         end
         context "when trader's email already exists" do
@@ -85,7 +88,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("Email has already been taken")
+            expect(json_response['status']['message']).to eq(['Email has already been taken'])
           end
         end
         context "when trader's first name is blank" do
@@ -99,7 +102,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("First name can't be blank")
+            expect(json_response['status']['message']).to eq(["First name can't be blank"])
           end
         end
         context "when trader's last name is blank" do
@@ -113,7 +116,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("Last name can't be blank")
+            expect(json_response['status']['message']).to eq(["Last name can't be blank"])
           end
         end
         context "when trader's role name is blank" do
@@ -127,7 +130,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("Role can't be blank")
+            expect(json_response['status']['message']).to eq(["Role can't be blank"])
           end
         end
         context "when there are many blank inputs for trader's info" do
@@ -141,7 +144,7 @@ RSpec.describe "Admins", type: :request do
     
             json_response = JSON.parse(response.body)
     
-            expect(json_response['status']['message']).to eq("Email can't be blank, First name can't be blank, Last name can't be blank, Role can't be blank")
+            expect(json_response['status']['message']).to eq(["Email can't be blank", "First name can't be blank", "Last name can't be blank", "Role can't be blank"])
           end
         end
       end
@@ -264,8 +267,8 @@ RSpec.describe "Admins", type: :request do
             transaction_type: 'BUY',
             status: 'FILLED',
             symbol: 'AAPL',
-            quantity: 100,
-            price: 150.00
+            quantity: 2,
+            price_per_share: 150.00
           )
           transaction2 = portfolio.transactions.create(
             market_name: 'STOCK',
@@ -273,8 +276,8 @@ RSpec.describe "Admins", type: :request do
             transaction_type: 'BUY',
             status: 'FILLED',
             symbol: 'AAPL',
-            quantity: 1000,
-            price: 1500.00
+            quantity: 3,
+            price_per_share: 1500.00
           )
           get "/admin/view_all_transactions"
 
@@ -283,8 +286,8 @@ RSpec.describe "Admins", type: :request do
           json_response = JSON.parse(response.body)
 
           expect(json_response['data'].count).to eq(2)
-          expect(json_response['data'][0]['price']).to eq('150.0')
-          expect(json_response['data'][1]['price']).to eq('1500.0')
+          expect(json_response['data'][0]['price_per_share']).to eq('150.0')
+          expect(json_response['data'][1]['price_per_share']).to eq('1500.0')
         end
       end
     end
