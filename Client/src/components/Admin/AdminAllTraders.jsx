@@ -135,7 +135,7 @@ export default function AdminAllTraders(props){
                                     <td headers="trader-last-name">{trader.last_name}</td>
                                     <td headers="trader-signup-status">
                                         {
-                                            trader.signup_status === "pending" ?
+                                            trader.signup_status === "PENDING" ?
                                                 <div style={{
                                                     backgroundColor: "#428E98", padding: "0.25em 1em 0.25em 1em",
                                                     borderRadius: "1em", color: "white", width: "100%",
@@ -158,7 +158,7 @@ export default function AdminAllTraders(props){
                                     : convertToProperDateAndTime(trader.confirmed_at)}</td>
                                     <td headers="trader-created-at">{trader.created_at === null ? "PENDING" : convertToProperDateAndTime(trader.created_at)}</td>
                                     <td className="d-flex gap-2">
-                                        <Button onClick={()=> approvePendingTrader(trader.id)} disabled={ trader.signup_status === "pending" ? false : true } variant="success">
+                                        <Button onClick={()=> approvePendingTrader(trader.id)} disabled={ trader.signup_status === "PENDING" ? false : true } variant="success">
                                             {
                                                 isLoading ?
                                                     <div className="d-flex justify-content-center align-items-center gap-2">
