@@ -1,21 +1,9 @@
-.logo-2 {
-    height: 66px;
-    left: 32px;
-    object-fit: cover;
-    position: absolute;
-    top: 41px;
-    width: 54px;
-}
-.text-wrapper-11 {
+.brand-name {
     color: #ffffff;
     font-family: "Myanmar Khyay-Regular", Helvetica;
-    font-size: 35px;
     font-weight: 400;
-    left: 103px;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 55px;
 }
 .custom-button {
     position: relative;
