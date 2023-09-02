@@ -12,7 +12,7 @@ class AdminsController < ApplicationController
             }, status: :ok
         else
             render json: {
-                status: { code: 422, message: user.errors.full_messages.join(', ') }
+                status: { code: 422, message: user.errors.full_messages }
             }, status: :unprocessable_entity
         end
     end
@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
             }, status: :ok
         else
             render json: {
-                status: { code: 422, message: user.errors.full_messages.join(', ') }
+                status: { code: 422, message: user.errors.full_messages }
             }, status: :unprocessable_entity
         end
     end
