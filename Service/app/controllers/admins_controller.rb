@@ -65,10 +65,9 @@ class AdminsController < ApplicationController
     end
 
     def view_all_pending
-        serialized_pending_traders = User.pending_traders
         render json: {
                 status: { code: 200, message: "All pending traders obtained"},
-                data: serialized_pending_traders
+                data: User.pending_traders
         }, status: :ok
     end
 
