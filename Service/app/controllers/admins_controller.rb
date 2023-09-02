@@ -20,7 +20,6 @@ class AdminsController < ApplicationController
     def edit_trader
         user = User.find(params[:user_id])
         if user.update(trader_params)
-            user.email = trader_params[:email]
             render json: {
                 status: { code: 200, message: "Trader update successful."},
                 data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
