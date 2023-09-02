@@ -81,7 +81,13 @@ export default function AdminAllTraders(props){
         }
     }
     return(
-        <div className="container-fluid p-0" style={{overflowY: "auto", overflowX: "hidden", height: "100%", maxHeight: "873px", display: "block", fontWeight: "bold", textAlign: "center"}}>
+        <div 
+            className="container-fluid p-0" 
+            style={{
+                overflowY: "auto", overflowX: "hidden", height: "100%", maxHeight: "873px", 
+                display: "block", fontWeight: "bold", textAlign: "center"
+            }}
+        >
             <TraderInfoModal 
                 variant={variant}
                 selectedTraderInfo={selectedTraderInfo}
@@ -111,6 +117,7 @@ export default function AdminAllTraders(props){
                         <th id="trader-email" style={{width: "10%", padding: "0.5em 1em"}}>Email</th>
                         <th id="trader-first-name" style={{width: "10%", padding: "0.5em 1em"}}>First Name</th>
                         <th id="trader-last-name" style={{width: "10%", padding: "0.5em 1em"}}>Last Name</th>
+                        <th id="trader-role" style={{width: "10%", padding: "0.5em 1em"}}>Role</th>
                         <th id="trader-signup-status">Signup status</th>
                         <th id="trader-confirmed-at" style={{width: "20%", padding: "0.5em 1em"}}>Confirmed at</th>
                         <th id="trader-created-at">Created at</th>
@@ -133,6 +140,7 @@ export default function AdminAllTraders(props){
                                     <td headers="trader-email">{trader.email}</td>
                                     <td headers="trader-first-name">{trader.first_name}</td>
                                     <td headers="trader-last-name">{trader.last_name}</td>
+                                    <td headers="trader-role">{trader.role}</td>
                                     <td headers="trader-signup-status">
                                         {
                                             trader.signup_status === "PENDING" ?
