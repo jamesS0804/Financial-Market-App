@@ -6,11 +6,11 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            portfolio.update(
-                market_value: portfolio.market_value + transaction.amount, 
-                settled_cash: portfolio.settled_cash - transaction.amount,
-                buying_power: portfolio.buying_power - transaction.amount
-            )
+            symbol = transaction_params[:symbol]
+            quantity = transaction_params[:quantity].to_f
+            price_per_share = transaction_params[:price_per_share].to_f
+
+            portfolio.buy_unit(symbol, quantity, price_per_share)
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
                 data: { 
@@ -30,11 +30,11 @@ class TransactionsController < ApplicationController
         transaction = portfolio.transactions.new(transaction_params)
 
         if transaction.save
-            portfolio.update(
-                market_value: portfolio.market_value - transaction.amount, 
-                settled_cash: portfolio.settled_cash + transaction.amount,
-                buying_power: portfolio.buying_power + transaction.amount
-            )
+            symbol = transaction_params[:symbol]
+            quantity = transaction_params[:quantity].to_f
+            price_per_share = transaction_params[:price_per_share].to_f
+            
+            portfolio.sell_unit(symbol, quantity, price_per_share)
             render json: {
                 status: { code: 200, message: 'Transaction processed'},
                 data: { 
