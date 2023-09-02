@@ -49,4 +49,13 @@ RSpec.describe "SessionsControllers", type: :request do
       end
     end
   end
+  
+  describe "sessions_params" do
+    context "it should be valid if passed a valid parameter" do
+      let(:valid_params) { { user: { email: user.email, password: user.password } } }
+      it "is valid" do
+
+      end
+    end
+  end
 end
