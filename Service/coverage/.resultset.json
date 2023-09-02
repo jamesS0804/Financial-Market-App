@@ -65,7 +65,7 @@
           null,
           null,
           1,
-          48,
+          50,
           null,
           null,
           1,
@@ -77,11 +77,11 @@
           null,
           null,
           1,
-          48,
+          50,
           null,
           null,
           1,
-          48,
+          50,
           null,
           null,
           1,
@@ -1202,13 +1202,38 @@
           null
         ]
       },
-      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/requests/portfolio_spec.rb": {
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/spec/requests/portfolio_controller_spec.rb": {
         "lines": [
           1,
           null,
           1,
+          3,
+          1,
+          2,
+          2,
+          null,
+          null,
           1,
           1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
           null,
           null
         ]
@@ -1635,6 +1660,33 @@
           null
         ]
       },
+      "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/portfolio_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/home/jsucaldito84/Avion/Rails/Financial Market App/Service/app/controllers/users/registrations_controller.rb": {
         "lines": [
           1,
@@ -1823,6 +1875,6 @@
         ]
       }
     },
-    "timestamp": 1693620564
+    "timestamp": 1693622337
   }
 }
