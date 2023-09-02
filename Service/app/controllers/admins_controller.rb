@@ -103,6 +103,6 @@ class AdminsController < ApplicationController
     end
 
     def trader_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name, :role)
+        params.require(:user).permit(:email, :password, :first_name, :last_name, :role, :signup_status, :confirmed_at)
     end
 end
