@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_02_030003) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_02_203748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_030003) do
 
   create_table "units", force: :cascade do |t|
     t.string "symbol"
-    t.string "name"
+    t.string "company_name"
     t.string "exchange"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_030003) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.integer "role", default: 0, null: false
-    t.string "signup_status", default: "pending", null: false
+    t.string "signup_status", default: "PENDING", null: false
     t.string "jti", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
