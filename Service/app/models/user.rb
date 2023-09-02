@@ -14,4 +14,19 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :role, presence: true
+
+  after_save :create_default_portfolio
+
+  def get_default_portfolio
+    portfolio = self.portfolios.first
+  end
+
+  def create_default_portfolio
+      self.portfolios.create(
+        name: "Default Portfolio",
+        buying_power: 10000,
+        settled_cash: 10000,
+        market_value: 0,
+      )   
+  end
 end
