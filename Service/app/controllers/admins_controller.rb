@@ -55,7 +55,7 @@ class AdminsController < ApplicationController
     end
 
     def view_all_traders
-        trader_users = User.TRADER.map do |user|
+        trader_users = User.map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
         render json: {
