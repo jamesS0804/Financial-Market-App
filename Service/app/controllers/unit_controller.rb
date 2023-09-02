@@ -22,7 +22,7 @@ class UnitController < ApplicationController
                 unit = Unit.new(
                     market_name: 'STOCK',
                     symbol: stock[1]['symbol'],
-                    name: stock[1]['shortName'],
+                    company_name: stock[1]['shortName'],
                     exchange: stock[1]['fullExchangeName'],
                     price: stock[1]['regularMarketPreviousClose']['raw'],
                     bid: stock[1]['bid']['raw'],

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :portfolios, dependent: :destroy
   
   enum role: [ :TRADER, :ADMIN ]
-  scope :pending_traders, -> { where(signup_status: 'pending').where.not(confirmed_at: nil) }
+  scope :pending_traders, -> { where(signup_status: 'PENDING').where.not(confirmed_at: nil) }
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
