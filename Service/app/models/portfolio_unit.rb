@@ -1,0 +1,3 @@
+class PortfolioUnit < ApplicationRecord
+    
+end
