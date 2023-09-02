@@ -5,7 +5,26 @@ RSpec.describe "TransactionsController", type: :request do
   before(:each) do
     sign_in(user)
     market = Market.create(name: 'STOCK')
+    unit = Unit.create(symbol: "AAPL",
+      name: "Apple Inc.",
+      exchange: "NasdaqGS",
+      market_name: "STOCK",
+      price: 0.17638e3,
+      bid: 0.0,
+      volume: 51449594,
+      ask: 0.0,
+      change: 0.22299957e1,
+      change_percent: 0.12643132e1,
+      average_daily_volume: 50892360,
+      currency: "USD")
     @portfolio = user.portfolios.create(name: 'test portfolio', settled_cash: 1000.00, buying_power: 1000.00, market_value: 500.00)
+    existing_unit = @portfolio.portfolio_units.create(
+      symbol: 'AAPL',
+      company_name: 'Apple Inc.',
+      price_per_share: 150,
+      quantity: 2,
+      amount: 300
+    )
   end
   
   describe "Stock Market orders" do
