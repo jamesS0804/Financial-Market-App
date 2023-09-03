@@ -65,9 +65,12 @@ class AdminsController < ApplicationController
     end
 
     def view_all_pending
+        pending_traders = User.pending_traders.map do |user|
+            UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
+        end
         render json: {
                 status: { code: 200, message: "All pending traders obtained"},
-                data: User.pending_traders
+                data: pending_traders
         }, status: :ok
     end
 
