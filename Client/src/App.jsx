@@ -77,7 +77,15 @@ function App() {
             isLoading={isLoading}
             setIsLoading={setIsLoading}/>
         }/>
-        <Route path="/dashboard/trader" element={<Dashboard api={api} currentUserData={currentUserData}/>}/>
+        <Route path="/dashboard/trader" element={<Dashboard
+          api={api} 
+          currentUserData={currentUserData}
+          setIsLoading={setIsLoading}
+          isLoading={isLoading}
+          setAuthAlert={setAuthAlert}
+          renderAlertVariant={renderAlertVariant}
+          authAlert={authAlert}
+        />}/>
         <Route path="/dashboard/admin" element={<AdminDashboardPage 
           setIsLoading={setIsLoading}
           setAuthAlert={setAuthAlert}

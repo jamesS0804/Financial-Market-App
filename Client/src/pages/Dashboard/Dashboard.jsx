@@ -6,7 +6,15 @@ import TraderPortfolio from "../../components/Trader/TraderPortfolio";
 import Navbar from "../../components/Navbar";
 
 export default function Dashboard (props) {
-  const { api, currentUserData } = props
+  const { 
+    api, 
+    currentUserData, 
+    setAuthAlert, 
+    isLoading, 
+    setIsLoading, 
+    renderAlertVariant,
+    authAlert
+  } = props
   const [ navBarHeight, setNavBarHeight ] = useState(0)
   const [ chosenSidebarOption, setChosenSidebarOption ] = useState()
   const [ currentUserPortfolio, setCurrentUserPortfolio ] = useState({
@@ -21,6 +29,11 @@ export default function Dashboard (props) {
               return <TraderMarket 
                         navBarHeight={navBarHeight}
                         currentUserPortfolio={currentUserPortfolio}
+                        setAuthAlert={setAuthAlert}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                        renderAlertVariant={renderAlertVariant}
+                        authAlert={authAlert}
                       />
           case "PORTFOLIO":
               return <TraderPortfolio 
