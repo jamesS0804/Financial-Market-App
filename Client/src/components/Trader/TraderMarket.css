@@ -1,0 +1,9 @@
+tr, td {
+    padding: 0;
+    margin: 0;
+    vertical-align: auto;
+}
+
+td {
+    padding: 0.5em;
+}
