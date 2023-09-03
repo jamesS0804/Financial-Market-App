@@ -1,86 +1,65 @@
 class AdminsController < ApplicationController
+    include JsonRender
     respond_to :json
     before_action :authenticate_user!
     before_action :authenticate_admin
+    before_action :find_user, only: [:edit_trader, :view_trader, :delete_trader, :approve_trader]
 
     def create_trader
         user = User.new(trader_params)
         if user.save
-            render json: {
-                status: { code: 200, message: "Trader creation successful."},
-                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
-            }, status: :ok
+            data = UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
+            message = 'Trader creation successful.'
         else
-            render json: {
-                status: { code: 422, message: user.errors.full_messages }
-            }, status: :unprocessable_entity
+            status_code = 422
+            message = user.errors.full_messages
         end
+        render_json_response(status_code: status_code, data: data, message: message)
     end
 
     def edit_trader
-        user = User.find(params[:user_id])
-        if user.update(trader_params)
-            render json: {
-                status: { code: 200, message: "Trader update successful."},
-                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
-            }, status: :ok
+        if @user.update(trader_params)
+            data = UserExtendedSerializer.new(@user).serializable_hash[:data][:attributes]
+            message = 'Trader update successful.'
         else
-            render json: {
-                status: { code: 422, message: user.errors.full_messages }
-            }, status: :unprocessable_entity
+            status_code = 422
+            message = @user.errors.full_messages
         end
+        render_json_response(status_code: status_code, data: data, message: message)
     end
 
     def view_trader
-        user = User.find(params[:user_id])
-        if user
-            render json: {
-                status: { code: 200, message: "Trader found."},
-                data: UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
-            }, status: :ok
-        end
+        render_json_response(data: UserExtendedSerializer.new(@user).serializable_hash[:data][:attributes], message: 'Trader found.')
     end
 
     def delete_trader
-        user = User.find(params[:user_id])
-        if user.destroy
-            render json: {
-                status: { code: 200, message: "Trader deletion successful."}
-            }, status: :ok
+        if @user.destroy
+            message = 'Trader deletion successful.'
         else
-            render json: {
-                status: { code: 422, message: "Trader deletion failed." }
-            }, status: :unprocessable_entity
+            status_code = 422
+            message = 'Trader deletion failed.'
         end
+        render_json_response(status_code: status_code, message: message)
     end
 
     def view_all_traders
         trader_users = User.all.map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
-        render json: {
-                status: { code: 200, message: "All traders' information obtained."},
-                data: trader_users
-        }, status: :ok
+        render_json_response(data: trader_users, message: "All traders' information obtained")
     end
 
     def view_all_pending
         pending_traders = User.pending_traders.map do |user|
             UserExtendedSerializer.new(user).serializable_hash[:data][:attributes]
         end
-        render json: {
-                status: { code: 200, message: "All pending traders obtained"},
-                data: pending_traders
-        }, status: :ok
+        render_json_response(data: pending_traders, message: 'All pending traders obtained')
     end
 
     def approve_trader
-        user_to_approve = User.find(params[:user_id])
-        if user_to_approve.update(signup_status: "approved")
-            AdminMailer.confirmation_email(user_to_approve).deliver_now
-            render json: {
-                status: { code: 200, message: "Trader approved and confirmation email sent"}
-            }, status: :ok
+        if @user.update(signup_status: "approved")
+            AdminMailer.confirmation_email(@user).deliver_now
+            render_json_response(data: @user, message: 'Trader approved and confirmation email sent')
         end
     end
 
@@ -89,20 +68,25 @@ class AdminsController < ApplicationController
         serialized_transactions = all_transactions.map do |transaction|
             TransactionSerializer.new(transaction).serializable_hash[:data][:attributes]
         end
-        render json: {
-            status: { code: 200, message: "All transactions obtained."},
-            data: serialized_transactions
-        }, status: :ok
+        render_json_response(data: serialized_transactions, message: 'All transactions obtained')
     end
 
     private
 
+    def find_user
+        @user = User.find(params[:user_id])
+    rescue ActiveRecord::RecordNotFound
+        render_json_response(status_code: 404, message: 'User not found')
+    end
+
     def authenticate_admin
         unless current_user && current_user.ADMIN?
-            render json: {
-                status: { code: 403, message: "You don't have permission to access this page." }
-            }, status: :forbidden
+            render_json_response(status_code: 403, message: "You don't have permission to access this page.")
         end
+    end
+
+    def render_json_response(status_code: nil, message: , data: nil)
+        render_json(status_code, message , data)
     end
 
     def trader_params

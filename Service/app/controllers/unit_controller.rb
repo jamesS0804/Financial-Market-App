@@ -1,6 +1,7 @@
 require 'httparty'
 
 class UnitController < ApplicationController
+    include JsonRender
     def get_data
         array_of_stocks = ["AMZN", "META", "BAC", "NU", "AAPL", "AMD", "PLTR", "AMZN", "NIO", "MRVL", "LCID", "ABEV", "GOOGL", "SOFI", "GOOGL", "META", "JWN", "XPEV", "T", "SNAP", "NVDA", "INTC", "DIS", "WMT", "TSLA", "BYND", "GOOG", "COST", "TGT", "RCL", "PEP", "MA", "VZ", "UNH", "PG", "WBA", "CVX", "JPM", "XOM", "NFLX", "GS", "MSFT"]
         joined_stocks = array_of_stocks.join(',')
@@ -35,17 +36,17 @@ class UnitController < ApplicationController
                 )
                 unit.save
             end
-            render json: {
-                status: { code: 200, message: 'Stock data obtained.' },
-                data: all_stocks
-            }, status: :ok
-          end
+            render_json_response(data: all_stocks, message: 'Stock data obtained.')
+        end
     end
     def get_stored_data
         all_stored_data = Unit.all
-        render json: {
-                status: { code: 200, message: 'Stock data obtained.' },
-                data: all_stored_data
-            }, status: :ok
+        render_json_response(data: all_stored_data, message: 'Stock data obtained.')
+    end
+
+    private
+
+    def render_json_response(status_code: nil, message: , data: nil)
+        render_json(status_code, message , data)
     end
 end

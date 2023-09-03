@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+    include JsonRender
     before_action :authenticate_user!, :check_if_pending
     
     def process_market_order_buy
@@ -13,38 +14,46 @@ class TransactionsController < ApplicationController
 
     def handle_market_order(transaction_type)
         portfolio = Portfolio.find(params[:portfolio_id])
-        transaction = portfolio.transactions.new(transaction_params)
+        portfolio_unit = portfolio.portfolio_units.find_by(symbol: transaction_params[:symbol])
 
-        if transaction.save
-            symbol = transaction_params[:symbol]
-            quantity = transaction_params[:quantity].to_f
-            price_per_share = transaction_params[:price_per_share].to_f
+        if portfolio.has_enough_balance?(portfolio_unit)
+            transaction = portfolio.transactions.new(transaction_params)
 
-            if transaction_type == 'BUY'
-                portfolio.buy_unit(symbol, quantity, price_per_share)
+            if transaction.save
+                symbol = transaction_params[:symbol]
+                quantity = transaction_params[:quantity].to_f
+                price_per_share = transaction_params[:price_per_share].to_f
+    
+                if transaction_type == 'BUY'
+                    portfolio.buy_unit(symbol, quantity, price_per_share)
+                else
+                    portfolio.sell_unit(symbol, quantity, price_per_share)
+                end
+                render_json_response(
+                    data: { 
+                        transaction_receipt: TransactionSerializer.new(transaction).serializable_hash[:data][:attributes],
+                        portfolio: portfolio
+                    }, 
+                    message: 'Transaction processed')
+                return
             else
-                portfolio.sell_unit(symbol, quantity, price_per_share)
+                render_json_response(status_code: 422 , message: "Transaction failed")
+                return
             end
-            render json: {
-                status: { code: 200, message: 'Transaction processed'},
-                data: { 
-                    transaction_receipt: TransactionSerializer.new(transaction).serializable_hash[:data][:attributes],
-                    portfolio: portfolio
-                }
-            }, status: :ok
         else
-            render json: {
-                status: { code: 422, message: 'Transaction failed'}
-            }, status: :unprocessable_entity
+            render_json_response(status_code: 422 , message: "Transaction failed. You don't have enough balance")
+            return
         end
     end
 
     def check_if_pending
         if current_user.signup_status == 'PENDING'
-            render json: {
-                status: { code: 403, essage: 'Transaction feature is locked. You will receive an email once approved.' }
-            }, status: :forbidden
+            render_json_response(status_code: 403 , message: 'Transaction feature is locked. You will receive an email once approved.')
         end
+    end
+
+    def render_json_response(status_code: nil, message: , data: nil)
+        render_json(status_code, message , data)
     end
 
     def transaction_params
