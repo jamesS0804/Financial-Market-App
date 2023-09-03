@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+  include JsonRender
   respond_to :json
 
   private
@@ -8,15 +9,7 @@ class Users::SessionsController < Devise::SessionsController
     expiry_in_seconds = expiry_object.to_i
 
     response.headers['expiry'] = expiry_in_seconds
-    render json: {
-      status: {
-        code: 200,
-        message: 'Logged in successfully'
-      },
-      data: {
-        user: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-      }
-    }, status: :ok
+    render_json_response(message: 'Logged in successfully', data: { user: UserSerializer.new(resource).serializable_hash[:data][:attributes] })
   end
 
   def respond_to_on_destroy
@@ -27,17 +20,14 @@ class Users::SessionsController < Devise::SessionsController
 
       if current_user
         sign_out(current_user)
-
-        render json: {
-          status: 200,
-          message: "logged out successfully"
-        }, status: :ok
+        render_json_response(message: 'logged out successfully')
       end
     rescue JWT::DecodeError
-      render json: {
-        status: 401,
-        message: "Invalid authentication token."
-      }, status: :unauthorized
+      render_json_response(status_code: 401, message: 'Invalid authentication token.')
     end
+  end
+
+  def render_json_response(status_code: nil, message: , data: nil)
+    render_json(status_code, message , data)
   end
 end
