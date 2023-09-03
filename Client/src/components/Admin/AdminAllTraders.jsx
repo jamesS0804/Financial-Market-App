@@ -14,13 +14,15 @@ export default function AdminAllTraders(props){
     useEffect(()=> {
         getAllTradersData()
     },[])
-    const openTraderModal = (id, email, first_name, last_name, role) => {
+    const openTraderModal = (id, email, first_name, last_name, role, signup_status, confirmed_at) => {
         setSelectedTraderInfo({
             id: id,
             email: email,
             first_name: first_name,
             last_name: last_name,
-            role: role
+            role: role,
+            signup_status: signup_status?.toUpperCase(),
+            confirmed_at: confirmed_at
         })
         setShowTraderModal(true)
     }
@@ -177,7 +179,7 @@ export default function AdminAllTraders(props){
                                             }
                                         </Button>
                                         <Button onClick={()=> {
-                                            openTraderModal(trader.id, trader.email, trader.first_name, trader.last_name, trader.role)
+                                            openTraderModal(trader.id, trader.email, trader.first_name, trader.last_name, trader.role, trader.signup_status, trader.confirmed_at)
                                             setVariant("EDIT")
                                         }} variant="warning">Edit <i className="bi bi-pencil-fill"></i></Button>
                                         <Button onClick={()=> deleteTrader(trader.id)} variant="danger">Delete <i className="bi bi-trash-fill"></i></Button>
