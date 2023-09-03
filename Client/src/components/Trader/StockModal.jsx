@@ -55,28 +55,28 @@ export default function StockModal(props){
         console.log("DISPLAY quantity: " + quantity)
         console.log("DATA amount: " + amountData)
         console.log("DATA quantity: " + quantityData)
-        // try {
-        //     const response = await authenticated_api.post(`portfolios/${currentUserPortfolio.id}/transactions/market_order/${marketStockData.transaction_type.toLowerCase()}`,
-        //         {
-        //             transaction: {
-        //                 market_name: 'STOCK',
-        //                 market_order_type: 'MARKET',
-        //                 transaction_type: marketStockData.transaction_type,
-        //                 status: 'FILLED',
-        //                 symbol: 'AAPL',
-        //                 quantity: quantityRef.current.value,
-        //                 price_per_share: amountRef.current.value * quantityRef.current.value
-        //             }
-        //         }
-        //     )
-        //     if(response.status === 200){
-        //         console.log(response)
-        //     } else {
-        //         console.log(response)
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            const response = await authenticated_api.post(`portfolios/${currentUserPortfolio.id}/transactions/market_order/${marketStockData.transaction_type.toLowerCase()}`,
+                {
+                    transaction: {
+                        market_name: 'STOCK',
+                        market_order_type: 'MARKET',
+                        transaction_type: marketStockData.transaction_type,
+                        status: 'FILLED',
+                        symbol: 'AAPL',
+                        quantity: quantity,
+                        price_per_share: marketStockData.price_per_share
+                    }
+                }
+            )
+            if(response.status === 200){
+                console.log(response)
+            } else {
+                console.log(response)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
     const handleAmountOnChange = (e) => {
         const amount = parseFloat(e.currentTarget.value)
