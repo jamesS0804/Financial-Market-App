@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   },
   controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
   }
   post "admin/create_trader" => "admins#create_trader"
   patch "admin/edit_trader/:user_id" => "admins#edit_trader"
