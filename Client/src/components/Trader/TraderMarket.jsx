@@ -6,7 +6,14 @@ import logo from "../../assets/img/logo-1.png"
 import "./TraderMarket.css"
 
 export default function TraderMarket(props){
-    const { currentUserPortfolio } = props
+    const { 
+        currentUserPortfolio, 
+        setAuthAlert, 
+        isLoading, 
+        setIsLoading, 
+        renderAlertVariant,
+        authAlert
+    } = props
     const [ stockData, setStockData ] = useState([])
     const [ showStockModal, setShowStockModal ] = useState(false)
     const [ marketStockData, setMarketStockData ] = useState({
@@ -50,6 +57,11 @@ export default function TraderMarket(props){
                 marketStockData={marketStockData}
                 setMarketStockData={setMarketStockData}
                 currentUserPortfolio={currentUserPortfolio}
+                setAuthAlert={setAuthAlert}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                renderAlertVariant={renderAlertVariant}
+                authAlert={authAlert}
             />
             <h1 style={{fontWeight: "bold", fontSize: "2.5rem", padding: "0 1em 0 0.80em"}}>Stock Market</h1>
             <table className="container-fluid" style={{borderCollapse: "collapse"}}>
@@ -75,7 +87,7 @@ export default function TraderMarket(props){
                                             <span style={{fontSize: "1.1rem"}}>{stock.company_name}</span>
                                         </div>
                                     </td>
-                                    <td headers="market-change" style={{padding: "0", margin: "0"}}>
+                                    <td headers="market-change">
                                         <div className="d-flex flex-column justify-content-center align-items-center">
                                             <span style={
                                                 stock.change > 0 ? {color: "green", fontSize: "1.5rem", fontWeight: "bold"} : {color: "#A73121", fontSize: "1.5rem", fontWeight: "bold"}

@@ -9,7 +9,12 @@ export default function StockModal(props){
         setShowStockModal,
         marketStockData,
         setMarketStockData,
-        currentUserPortfolio
+        currentUserPortfolio,
+        setAuthAlert,
+        isLoading,
+        setIsLoading,
+        renderAlertVariant,
+        authAlert
     } = props
     const [checked, setChecked] = useState(false);
     const [radioValue, setRadioValue] = useState("1");
@@ -28,6 +33,7 @@ export default function StockModal(props){
         setRadioValue(()=>marketStockData.transaction_type === "BUY" ? "1" : "2")
         setQuantity(1)
         setAmount(marketStockData.price_per_share)
+        setAuthAlert({status: "", message: ""})
     },[showStockModal])
 
     useEffect(()=>{
@@ -72,7 +78,7 @@ export default function StockModal(props){
             if(response.status === 200){
                 console.log(response)
             } else {
-                console.log(response)
+                setAuthAlert({status: "ERROR", message: response.response.data.status.message})
             }
         } catch (error) {
             console.log(error)
@@ -179,7 +185,7 @@ export default function StockModal(props){
                         </div>
                         <div>Amount</div>
                     </InputGroup>
-                    <InputGroup className="d-flex flex-column justify-content-center align-items-center">
+                    <InputGroup className="d-flex flex-column justify-content-center align-items-center" style={{margin: "1rem 0 1rem 0"}}>
                         <div className="d-flex justify-content-center align-items-center">
                             <Button onClick={()=> setQuantity(quantity - 1)} style={{backgroundColor: "#005E69", border: "none", height: "3.5em", borderRight: "1px solid white", borderRadius: "0"}}><i className="bi bi-dash"></i></Button>
                             <Form.Control
@@ -196,6 +202,7 @@ export default function StockModal(props){
                         <div>Quantity</div>
                     </InputGroup>
                 </Form>
+                { authAlert.status && renderAlertVariant() }
             </Modal.Body>
             <Modal.Footer className="d-flex justify-content-center align-items-center" style={{backgroundColor: "#062440", border: "none", paddingBottom: "1em"}}>
                 <Button variant="success" onClick={()=>processTransaction()} 
