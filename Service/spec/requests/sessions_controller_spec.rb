@@ -31,8 +31,8 @@ RSpec.describe "SessionsControllers", type: :request do
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
-        expect(json_response['status']).to eq(200)
-        expect(json_response['message']).to eq('logged out successfully')
+        expect(json_response['status']['code']).to eq(200)
+        expect(json_response['status']['message']).to eq('logged out successfully')
       end
     end
 
@@ -44,8 +44,8 @@ RSpec.describe "SessionsControllers", type: :request do
   
         expect(response).to have_http_status(:unauthorized)
         json_response = JSON.parse(response.body)
-        expect(json_response['status']).to eq(401)
-        expect(json_response['message']).to eq("Invalid authentication token.")
+        expect(json_response['status']['code']).to eq(401)
+        expect(json_response['status']['message']).to eq("Invalid authentication token.")
       end
     end
   end

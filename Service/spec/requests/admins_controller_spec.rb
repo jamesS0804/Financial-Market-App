@@ -171,7 +171,8 @@ RSpec.describe "Admins", type: :request do
       end
       context "when an admin wants to view a non-existent trader" do
         it "raises an error" do
-          expect{get "/admin/view_trader/#{0}"}.to raise_error(ActiveRecord::RecordNotFound)
+          get "/admin/view_trader/#{0}"
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
