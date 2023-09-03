@@ -21,6 +21,8 @@ class User < ApplicationRecord
     portfolio = self.portfolios.first
   end
 
+  private
+
   def create_default_portfolio
       self.portfolios.create(
         name: "Default Portfolio",
