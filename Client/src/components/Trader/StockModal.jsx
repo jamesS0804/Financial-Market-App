@@ -1,6 +1,8 @@
 import { Modal, Button, Form, InputGroup, ButtonGroup, ToggleButton } from "react-bootstrap"
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import authenticated_api from "../../utils/authenticated_api";
+import logo from "../../assets/img/logo-1.png"
+
 export default function StockModal(props){
     const { 
         showStockModal,
@@ -19,32 +21,40 @@ export default function StockModal(props){
     const quantityRef = useRef()
     const [ quantity, setQuantity ] = useState(1)
     const [ amount, setAmount ] = useState(marketStockData.price_per_share)
+    const [ quantityData, setQuantityData ] = useState(1)
+    const [ amountData, setAmountData ] = useState(marketStockData.price_per_share)
 
     useLayoutEffect(()=>{
         setRadioValue(()=>marketStockData.transaction_type === "BUY" ? "1" : "2")
         setQuantity(1)
         setAmount(marketStockData.price_per_share)
     },[showStockModal])
+
+    useEffect(()=>{
+        const quantity = (amount / marketStockData.price_per_share)
+        const fixedQuantity = quantity.toFixed(2)
+        setQuantityData(quantity)
+        setQuantity(quantity)
+    },[amount])
+
+    useEffect(()=>{
+        const amount = (marketStockData.price_per_share * quantity)
+        const fixedAmount = amount.toFixed(2)
+        setAmountData(amount)
+        setAmount(amount)
+    },[quantity])
+
     const closeStockModal = () => {
         setShowStockModal(false)
     }
-    useLayoutEffect(()=>{
-        console.log(quantity)
-        console.log(typeof amount)
-        setAmount(marketStockData.price_per_share * quantity)
-        console.log(typeof amount)
-    },[quantity])
-    useLayoutEffect(()=>{
-        console.log(amount)
-        console.log(typeof quantity)
-        setQuantity(amount / marketStockData.price_per_share)
-        console.log(typeof quantity)
-    }, [amount])
+
     const processTransaction = async() => {
-        console.log(marketStockData.transaction_type)
-        console.log(marketStockData.price_per_share)
-        console.log(marketStockData.price_per_share * quantityRef.current.value)
-        console.log(quantityRef.current.value)
+        console.log("transaction type: " + marketStockData.transaction_type)
+        console.log("price per share: " + marketStockData.price_per_share)
+        console.log("DISPLAY amount: " + amount)
+        console.log("DISPLAY quantity: " + quantity)
+        console.log("DATA amount: " + amountData)
+        console.log("DATA quantity: " + quantityData)
         // try {
         //     const response = await authenticated_api.post(`portfolios/${currentUserPortfolio.id}/transactions/market_order/${marketStockData.transaction_type.toLowerCase()}`,
         //         {
@@ -68,6 +78,30 @@ export default function StockModal(props){
         //     console.log(error)
         // }
     }
+    const handleAmountOnChange = (e) => {
+        const amount = parseFloat(e.currentTarget.value)
+        const fixedFloat = amount.toFixed(2);
+        setAmountData(amount)
+        setAmount(fixedFloat)
+    }
+    const handleQuantityOnChange = (e) => {
+        const quantity = parseFloat(e.currentTarget.value)
+        const fixedFloat = quantity.toFixed(2);
+        setQuantityData(quantity)
+        setQuantity(fixedFloat)
+    }
+    const handleAmountOnBlur = (e) => {
+        const float = parseFloat(e.currentTarget.value);
+        const fixedFloat = float.toFixed(2);
+        setAmountData(float)
+        setAmount(fixedFloat)
+    }
+    const handleQuantityOnBlur = (e) => {
+        const float = parseFloat(e.currentTarget.value);
+        const fixedFloat = float.toFixed(2);
+        setQuantityData(float)
+        setQuantity(fixedFloat)
+    }
     return(
         <Modal 
             show={showStockModal} 
@@ -75,9 +109,9 @@ export default function StockModal(props){
             onHide={()=>closeStockModal()}
             style={{color: "white", fontSize: "1.5rem"}}
         >
-            <Modal.Header closeButton style={{backgroundColor: "#062440", border: "none"}}>
+            <Modal.Header style={{backgroundColor: "#062440", border: "none"}}>
                 <Modal.Title className="d-flex justify-content-center align-items-center" style={{width: "100%"}}>
-                    <ButtonGroup>
+                    <ButtonGroup style={{marginTop: "0.30rem"}}>
                         {radios.map((radio, idx) => (
                             <ToggleButton
                                 key={idx}
@@ -98,23 +132,35 @@ export default function StockModal(props){
                             </ToggleButton>
                         ))}
                     </ButtonGroup>
+                    <button
+                        type="button"
+                        className="btn-close btn-close-white"
+                        style={{position: "absolute", left: "88%", top: "5%"}}
+                        aria-label="Close"
+                        onClick={() => closeStockModal()}
+                    ></button>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={{backgroundColor: "#062440", border: "none", padding: "0.5em 2em 1em 2em"}}>
                 <Form>
-                    <div className="mb-5 mt-2 px-3">
-                        <div>
-                            <span>{marketStockData.transaction_type} </span>
-                            <span>{marketStockData.symbol}</span>
+                    <div className="mb-5 mt-2 px-0 d-flex gap-3">
+                        <div className="d-flex justify-content-center align-items-center">
+                            <img style={{height: "80%", width: "100%", border: "2px solid black", backgroundColor: "black", borderRadius: "0.5rem", padding: "0.1em"}} alt="brand-logo-placeholder" src={logo} width="50px" height="50px"/>
                         </div>
-                        <div>
-                            <span style={{marginRight: "1rem", fontSize: "3rem"}}>{marketStockData.price_per_share}</span>
-                            <span style={
-                                Number(marketStockData.change) >= 0 ?
-                                {marginRight: "1rem", color: "#59FF00"} : {marginRight: "1rem", color: "red"}}>{Number(marketStockData.change).toFixed(2)}</span>
-                            <span style={
-                                Number(marketStockData.change) >= 0 ?
-                                {marginRight: "1rem", color: "#59FF00"} : {marginRight: "1rem", color: "red"}}>({Number(marketStockData.change_percent).toFixed(2)}%)</span>
+                        <div className="d-flex flex-column justify-content-center">
+                            <div style={{height: "25%"}}>
+                                <span>{marketStockData.transaction_type} </span>
+                                <span>{marketStockData.symbol}</span>
+                            </div>
+                            <div>
+                                <span style={{marginRight: "1rem", fontSize: "3rem"}}>{marketStockData.price_per_share}</span>
+                                <span style={
+                                    Number(marketStockData.change) >= 0 ?
+                                    {marginRight: "1rem", color: "#59FF00"} : {marginRight: "1rem", color: "red"}}>{Number(marketStockData.change).toFixed(2)}</span>
+                                <span style={
+                                    Number(marketStockData.change) >= 0 ?
+                                    {marginRight: "1rem", color: "#59FF00"} : {marginRight: "1rem", color: "red"}}>({Number(marketStockData.change_percent).toFixed(2)}%)</span>
+                            </div>
                         </div>
                     </div>
                     <InputGroup className="d-flex flex-column justify-content-center align-items-center">
@@ -122,9 +168,9 @@ export default function StockModal(props){
                             <Button onClick={()=> setAmount(amount - 100)} style={{backgroundColor: "#005E69", border: "none", height: "3.5em", borderRight: "1px solid white", borderRadius: "0"}}><i className="bi bi-dash"></i></Button>
                             <Form.Control
                                 ref={amountRef}
-                                defaultValue={marketStockData.price_per_share}
-                                value={amount}
-                                onChange={(e)=>setAmount(parseFloat(e.target.value))}
+                                value={amount || ""}
+                                onChange={handleAmountOnChange}
+                                onBlur={handleAmountOnBlur}
                                 aria-label="number"
                                 aria-describedby="basic-addon1"
                                 style={{textAlign: "center", fontSize: "1.8rem", width: "70%", backgroundColor: "#005E69", color: "white", border: "none", borderRadius: "0"}}
@@ -138,9 +184,9 @@ export default function StockModal(props){
                             <Button onClick={()=> setQuantity(quantity - 1)} style={{backgroundColor: "#005E69", border: "none", height: "3.5em", borderRight: "1px solid white", borderRadius: "0"}}><i className="bi bi-dash"></i></Button>
                             <Form.Control
                                 ref={quantityRef}
-                                defaultValue="1"
-                                value={quantity}
-                                onChange={(e)=> setQuantity(e.target.value)}
+                                value={quantity || ""}
+                                onChange={handleQuantityOnChange}
+                                onBlur={handleQuantityOnBlur}
                                 aria-label="number"
                                 aria-describedby="basic-addon1"
                                 style={{textAlign: "center", fontSize: "1.8rem", width: "70%", backgroundColor: "#005E69", color: "white", border: "none", borderRadius: "0"}}
