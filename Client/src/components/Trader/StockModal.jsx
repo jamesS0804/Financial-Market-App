@@ -1,7 +1,6 @@
 import { Modal, Button, Form, InputGroup, ButtonGroup, ToggleButton } from "react-bootstrap"
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import authenticated_api from "../utils/authenticated_api";
-
+import authenticated_api from "../../utils/authenticated_api";
 export default function StockModal(props){
     const { 
         showStockModal,

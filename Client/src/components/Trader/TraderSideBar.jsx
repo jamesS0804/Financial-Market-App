@@ -1,7 +1,7 @@
-import "../components/TraderSideBar.css"
+import "../../components/Trader/TraderSideBar.css"
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import authenticated_api from '../utils/authenticated_api'
+import authenticated_api from '../../utils/authenticated_api'
 
 export default function TraderSideBar(props){
     const { setChosenSidebarOption } = props
@@ -20,10 +20,10 @@ export default function TraderSideBar(props){
         }
     }
     return(
-        <div className="d-flex flex-column h-100" style={{backgroundColor: "#1F2039", width: "414px"}}>
-            <div className="d-flex align-items-center px-3 py-3 gap-3">
-                <img className="logo-2" alt="Logo" src="/src/assets/img/logo-1.png"/>
-                <div className="text-wrapper-11">LEO TRADING</div>
+        <div className="d-flex flex-column h-100" style={{backgroundColor: "#1F2039", width: "20%"}}>
+            <div className="d-flex align-items-center px-3 py-3 gap-3" style={{marginTop: "5%"}}>
+                <img style={{width: "20%", height: "90%"}} alt="Logo" src="/src/assets/img/logo-1.png"/>
+                <h1 className="brand-name">LEO TRADING</h1>
             </div>
             <div className="d-flex flex-column gap-3" style={{color: "#4C95A9", marginTop: "30%"}}>
                 <button className="custom-button"  onClick={()=>setChosenSidebarOption("DASHBOARD")}>Dashboard</button>

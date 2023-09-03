@@ -1,4 +1,4 @@
-import "../TraderSideBar.css"
+import "../Trader/TraderSideBar.css"
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import authenticated_api from "../../utils/authenticated_api"
