@@ -25,7 +25,7 @@ export default function TraderSideBar(props){
                 <img style={{width: "20%", height: "90%"}} alt="Logo" src="/src/assets/img/logo-1.png"/>
                 <h1 className="brand-name">LEO TRADING</h1>
             </div>
-            <div className="d-flex flex-column gap-3" style={{color: "#4C95A9", marginTop: "30%"}}>
+            <div className="d-flex flex-column gap-3" style={{color: "#4C95A9", marginTop: "10%"}}>
                 <button className="custom-button"  onClick={()=>setChosenSidebarOption("DASHBOARD")}>Dashboard</button>
                 <button className="custom-button"  onClick={()=>setChosenSidebarOption("MARKET")}>Market</button>
                 <button className="custom-button"  onClick={()=>setChosenSidebarOption("PORTFOLIO")}>Portfolio</button>

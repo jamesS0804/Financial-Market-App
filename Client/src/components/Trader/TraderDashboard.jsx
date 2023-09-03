@@ -35,30 +35,29 @@ export default function TraderDashboard(props){
         marginTop: "5%", 
         marginLeft: "5%", 
         width: "50%", 
-        height: "40%", 
+        height: "50%", 
         backgroundColor: "#1a636c99",
-        border: "none",
-
+        border: "none"
     }
     return(
-        <div className="container-fluid h-100" style={{border: "1px solid green"}}>
+        <div className="container-fluid">
             <div className="card" style={card}>
-                <div className="p-5">
-                    <div>Welcome back, {currentUserData.first_name}!</div>
-                    <div>${currentUserPortfolio.market_value}</div>
+                <div className="">
+                    <div style={{padding: "0.5em 0.5em 0 0.5em", fontSize: "4rem", fontWeight: "bold"}}>Welcome back, {currentUserData.first_name}!</div>
+                    <div style={{color: "#8EECF8",padding: "0 0.5em 0.2em 0.5em", fontSize: "6rem", fontWeight: "bold"}}>${currentUserPortfolio.market_value}</div>
                 </div>
-                <div className="d-flex">
-                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 1px 0 0"}}>
+                <div className="d-flex justify-content-space-between w-100" style={{height: "50%", fontSize: "1.25rem"}}>
+                    <div className="flex-fill p-2 d-flex justify-content-center align-items-center flex-column" style={{border: "1px solid #83D9E3", borderWidth: "1px 1px 0 0"}}>
+                        <div style={{fontSize: "2.5rem"}}>${currentUserPortfolio.settled_cash}</div>
                         <div>Settled Cash</div>
-                        <div>${currentUserPortfolio.settled_cash}</div>
                     </div>
-                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 0 0 0"}}>
+                    <div className="flex-fill p-2 d-flex justify-content-center align-items-center flex-column" style={{border: "1px solid #83D9E3", borderWidth: "1px 0 0 0"}}>
+                        <div style={{fontSize: "2.5rem"}}>${currentUserPortfolio.market_value}</div>
                         <div>Market Value</div>
-                        <div>${currentUserPortfolio.market_value}</div>
                     </div>
-                    <div className="p-3" style={{border: "1px solid white", borderWidth: "1px 0 0 1px"}}>
+                    <div className="flex-fill p-2 d-flex justify-content-center align-items-center flex-column" style={{border: "1px solid #83D9E3", borderWidth: "1px 0 0 1px"}}>
+                        <div style={{fontSize: "2.5rem"}}>${currentUserPortfolio.buying_power}</div>
                         <div>Buying Power</div>
-                        <div>${currentUserPortfolio.buying_power}</div>
                     </div>
                 </div>
             </div>
