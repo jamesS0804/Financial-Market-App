@@ -85,9 +85,9 @@ RSpec.describe "TransactionsController", type: :request do
             it "should send a JSON response with a success message and transaction receipt and updated profile" do
               @transaction_params[:transaction][:transaction_type] = 'SELL'
               @portfolio.update(market_value: 500)
-  
+
               post "/portfolios/#{@portfolio.id}/transactions/market_order/sell", params: @transaction_params
-              
+
               expect(response).to have_http_status(:ok)
       
               transaction = Transaction.last

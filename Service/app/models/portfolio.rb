@@ -9,8 +9,16 @@ class Portfolio < ApplicationRecord
     validates :buying_power, numericality: { greater_than_or_equal_to: 0, message: 'must be greater than or equal to 0' }
 
     def has_enough_balance?(price_per_share, quantity)
-        required_cash = price_per_share * quantity
+        required_cash = price_per_share.to_f * quantity.to_f
         buying_power >= required_cash
+    end
+
+    def has_enough_unit?(symbol, quantity)
+        portfolio_unit = portfolio_units.find_by(symbol: symbol)
+
+        return false if !portfolio_unit
+        
+        portfolio_unit.quantity >= quantity.to_f 
     end
 
     def buy_unit(symbol, quantity, price_per_share)
