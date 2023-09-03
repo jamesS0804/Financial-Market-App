@@ -26,10 +26,10 @@ export default function TraderMarket(props){
     useEffect(()=>{
         getStockData()
     },[])
-    const openStockModal = (symbol, price, transaction_type, change, change_percent) => {
+    const openStockModal = (symbol, price_per_share, transaction_type, change, change_percent) => {
         setMarketStockData({
             symbol: symbol,
-            price_per_share: parseFloat(price),
+            price_per_share: parseFloat(price_per_share),
             transaction_type: transaction_type,
             change: change,
             change_percent: change_percent
@@ -98,7 +98,7 @@ export default function TraderMarket(props){
                                         </div>
                                     </td>
                                     <td headers="market-buy" style={{width: "12%"}}>
-                                        <Button onClick={()=>openStockModal(stock.symbol, stock.price, "BUY", stock.change, stock.change_percent)} 
+                                        <Button onClick={()=>openStockModal(stock.symbol, stock.price_per_share, "BUY", stock.change, stock.change_percent)} 
                                             style={{position: "relative", width: "100%", paddingLeft: "2em", border: "none"}}>
                                             <span style={{
                                                 position: "absolute", left: 0, top: 0, height: "100%",
@@ -108,11 +108,11 @@ export default function TraderMarket(props){
                                             }}>
                                                 <span>B</span>
                                             </span>
-                                            <span>{stock.price}</span>
+                                            <span>{stock.price_per_share}</span>
                                         </Button>
                                     </td>
                                     <td headers="market-sell" style={{width: "12%"}}>
-                                        <Button onClick={()=>openStockModal(stock.symbol, stock.price, "SELL", stock.change, stock.change_percent)} 
+                                        <Button onClick={()=>openStockModal(stock.symbol, stock.price_per_share, "SELL", stock.change, stock.change_percent)} 
                                             style={{position: "relative", width: "100%", paddingLeft: "2em", border: "none"}}>
                                             <span style={{
                                                 position: "absolute", left: 0, top: 0, height: "100%",
@@ -122,7 +122,7 @@ export default function TraderMarket(props){
                                             }}>
                                                 <span>S</span>
                                             </span>
-                                            <span>{stock.price}</span>
+                                            <span>{stock.price_per_share}</span>
                                         </Button>
                                     </td>
                                     <td headers="market-average-daily-volume" className="d-flex justify-content-center align-items-center">
