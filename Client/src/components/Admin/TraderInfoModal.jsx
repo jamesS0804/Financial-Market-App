@@ -1,5 +1,5 @@
 import { Modal, Form, ButtonGroup, ToggleButton, FloatingLabel, Button, Spinner, InputGroup } from "react-bootstrap"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useLayoutEffect } from "react"
 import authenticated_api from "../../utils/authenticated_api"
 
 export default function TraderInfoModal(props){
@@ -35,8 +35,12 @@ export default function TraderInfoModal(props){
     const [ emailConfirmedSwitchValue, setEmailConfirmedSwitchValue ] = useState(false)
     const [ emailConfirmed, setEmailConfirmed ] = useState(false)
 
-    useEffect(()=> {
-        resetModalValues()
+    useLayoutEffect(()=> {
+        console.log(selectedTraderInfo)
+        setRoleRadioValue(selectedTraderInfo?.role === "ADMIN" ? "1" : "0")
+        setSignupStatusRadioValue(selectedTraderInfo?.signup_status === "APPROVED" ? "1" : "0")
+        setAuthAlert({status: "", message: ""})
+        if(isLoadingModal) setIsLoadingModal(false)
     }, [showTraderModal])
 
     useEffect(()=>{
@@ -51,15 +55,6 @@ export default function TraderInfoModal(props){
         console.log("switch: " + emailConfirmedSwitchValue)
         setEmailConfirmed(emailConfirmedSwitchValue)
     }, [emailConfirmedSwitchValue])
-
-    const resetModalValues = () => {
-        setAuthAlert({status: "", message: ""})
-        setEmailConfirmed(false)
-        setEmailConfirmedSwitchValue(false)
-        setSignupStatusRadioValue("0")
-        setRoleRadioValue("0")
-        if(isLoadingModal) setIsLoadingModal(false)
-    }
 
     const closeTraderModal = () => {
         setShowTraderModal(false)
@@ -104,7 +99,6 @@ export default function TraderInfoModal(props){
                     email: emailRef.current.value,
                     first_name: firstNameRef.current.value,
                     last_name: lastNameRef.current.value,
-                    password: passwordRef.current.value,
                     role: roleName,
                     signup_status: signupStatus,
                     confirmed_at: emailConfirmed === true ? new Date().toLocaleString : null
@@ -226,14 +220,14 @@ export default function TraderInfoModal(props){
                                     ))}
                                 </ButtonGroup>
                             </InputGroup>
-                            <Form.Check
+                            {/* <Form.Check
                                 type="switch"
                                 label="Email Confirmed"
                                 onChange={(e)=> {
                                     setEmailConfirmedSwitchValue(!emailConfirmedSwitchValue)
                                 }}
                                 style={{margin: "1rem 0 1rem 0"}}
-                            />
+                            /> */}
                         </section>
                     </main>
                     { authAlert.status && renderAlertVariant() }
