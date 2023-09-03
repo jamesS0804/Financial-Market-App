@@ -19,6 +19,7 @@ class Portfolio < ApplicationRecord
         existing_unit = portfolio_units.find_by(symbol: symbol)
 
         if existing_unit
+
             existing_unit.update(
                 price_per_share: price_per_share,
                 quantity: existing_unit.quantity + quantity,
@@ -26,13 +27,13 @@ class Portfolio < ApplicationRecord
             )
         else
             unit = Unit.find_by(symbol: symbol)
-            
+
             portfolio_units.create(
                 symbol: symbol,
                 company_name: unit.company_name,
                 price_per_share: price_per_share,
                 quantity: quantity,
-                amount: amount,
+                amount: amount
             )
         end
 

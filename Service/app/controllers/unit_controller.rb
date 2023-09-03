@@ -3,7 +3,8 @@ require 'httparty'
 class UnitController < ApplicationController
     include JsonRender
     def get_data
-        array_of_stocks = ["AMZN", "META", "BAC", "NU", "AAPL", "AMD", "PLTR", "AMZN", "NIO", "MRVL", "LCID", "ABEV", "GOOGL", "SOFI", "GOOGL", "META", "JWN", "XPEV", "T", "SNAP", "NVDA", "INTC", "DIS", "WMT", "TSLA", "BYND", "GOOG", "COST", "TGT", "RCL", "PEP", "MA", "VZ", "UNH", "PG", "WBA", "CVX", "JPM", "XOM", "NFLX", "GS", "MSFT"]
+        array_of_stocks = ["AMZN", "META", "BAC", "NU", "AAPL", "AMD", "PLTR", "NIO", "MRVL", "LCID", "ABEV", "GOOGL", "SOFI", "JWN", "XPEV", "T", "SNAP", "NVDA", "INTC", "DIS", "WMT", "TSLA", "BYND", "GOOG", "COST", "TGT", "RCL", "PEP", "MA", "VZ", "UNH", "PG", "WBA", "CVX", "JPM", "XOM", "NFLX", "GS", "MSFT"]
+
         joined_stocks = array_of_stocks.join(',')
 
         base_url = 'https://yahoo-finance127.p.rapidapi.com'
@@ -25,7 +26,7 @@ class UnitController < ApplicationController
                     symbol: stock[1]['symbol'],
                     company_name: stock[1]['shortName'],
                     exchange: stock[1]['fullExchangeName'],
-                    price: stock[1]['regularMarketPreviousClose']['raw'],
+                    price_per_share: stock[1]['regularMarketPreviousClose']['raw'],
                     bid: stock[1]['bid']['raw'],
                     volume: stock[1]['regularMarketVolume']['raw'],
                     ask: stock[1]['ask']['raw'],
