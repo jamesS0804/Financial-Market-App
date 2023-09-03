@@ -1,8 +1,8 @@
 import { useState } from "react";
-import TraderSideBar from "../../components/TraderSideBar";
-import TraderDashboard from "../../components/TraderDashboard";
-import TraderMarket from "../../components/TraderMarket"
-import TraderPortfolio from "../../components/TraderPortfolio";
+import TraderSideBar from "../../components/Trader/TraderSideBar";
+import TraderDashboard from "../../components/Trader/TraderDashboard";
+import TraderMarket from "../../components/Trader/TraderMarket"
+import TraderPortfolio from "../../components/Trader/TraderPortfolio";
 import Navbar from "../../components/Navbar";
 
 export default function Dashboard (props) {

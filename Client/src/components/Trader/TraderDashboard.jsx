@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import authenticated_api from "../utils/authenticated_api"
+import authenticated_api from "../../utils/authenticated_api"
 
 export default function TraderDashboard(props){
     const { 

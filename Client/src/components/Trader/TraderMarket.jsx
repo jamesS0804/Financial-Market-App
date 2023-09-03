@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import authenticated_api from "../utils/authenticated_api";
+import authenticated_api from "../../utils/authenticated_api";
 import { Button } from "react-bootstrap";
 import StockModal from "./StockModal";
 
