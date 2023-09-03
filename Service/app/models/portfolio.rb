@@ -8,8 +8,8 @@ class Portfolio < ApplicationRecord
     validates :settled_cash, numericality: { greater_than_or_equal_to: 0, message: 'must be greater than or equal to 0' }
     validates :buying_power, numericality: { greater_than_or_equal_to: 0, message: 'must be greater than or equal to 0' }
 
-    def has_enough_balance?(portfolio_unit)
-        required_cash = portfolio_unit.price_per_share * portfolio_unit.quantity
+    def has_enough_balance?(price_per_share, quantity)
+        required_cash = price_per_share * quantity
         buying_power >= required_cash
     end
 
