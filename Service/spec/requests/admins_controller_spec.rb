@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Admins", type: :request do
   let(:non_admin_user) { User.create({ email: 'user@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "TRADER", confirmed_at: '2023-08-27T00:00:00.000Z' }) }
+  
   describe "when user is an admin" do
     let(:admin) { User.create(email: 'admin@example.com', password: 'password', first_name: 'test', last_name: 'test', role: "ADMIN", confirmed_at: Date.today, signup_status: 'approved') }
     
@@ -24,7 +25,7 @@ RSpec.describe "Admins", type: :request do
           expect(json_response['data']['last_name']).to eq("LastValid")
           expect(json_response['data']['created_at']).to_not be_nil
           expect(json_response['data']['confirmed_at']).to eq(nil)
-          expect(json_response['data']['signup_status']).to eq("pending")
+          expect(json_response['data']['signup_status']).to eq("PENDING")
         end
       end
       context "when an admin is unsuccessful in creating a new trader" do
@@ -165,7 +166,7 @@ RSpec.describe "Admins", type: :request do
           expect(json_response['data']['last_name']).to eq("test")
           expect(json_response['data']['created_at']).to_not be_nil
           expect(json_response['data']['confirmed_at']).to eq('2023-08-27T00:00:00.000Z')
-          expect(json_response['data']['signup_status']).to eq("pending")
+          expect(json_response['data']['signup_status']).to eq("PENDING")
         end
       end
       context "when an admin wants to view a non-existent trader" do
@@ -213,8 +214,8 @@ RSpec.describe "Admins", type: :request do
           json_response = JSON.parse(response.body)
 
           expect(json_response.count).to eq(2)
-          expect(json_response['data'][0]['email']).to eq(user1.email)
-          expect(json_response['data'][1]['email']).to eq(user2.email)
+          expect(json_response['data'].map { |user| user['email'] }).to include(user1.email)
+          expect(json_response['data'].map { |user| user['email'] }).to include(user2.email)
         end
       end
     end
@@ -292,6 +293,7 @@ RSpec.describe "Admins", type: :request do
       end
     end
   end
+
   describe "when a trader tries to access" do
     before(:each) do
       sign_in(non_admin_user)
