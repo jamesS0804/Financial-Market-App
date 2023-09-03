@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_02_203748) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_190939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_203748) do
     t.string "symbol"
     t.string "company_name"
     t.decimal "price_per_share"
-    t.integer "quantity"
+    t.decimal "quantity"
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_203748) do
     t.integer "transaction_type", default: 0, null: false
     t.string "status", null: false
     t.string "symbol", null: false
-    t.integer "quantity", null: false
+    t.decimal "quantity", null: false
     t.decimal "price_per_share", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_203748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "market_name"
-    t.decimal "price", null: false
+    t.decimal "price_per_share", null: false
     t.decimal "bid", null: false
     t.bigint "volume", null: false
     t.decimal "ask", null: false
