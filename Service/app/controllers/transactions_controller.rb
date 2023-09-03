@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
     before_action :authenticate_user!
-    before_action :check_if_pending
+    before_action :check_if_pending!
     
     def process_market_order_buy
         portfolio = Portfolio.find(params[:portfolio_id])

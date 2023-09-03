@@ -24,7 +24,7 @@ class Portfolio < ApplicationRecord
             
             portfolio_units.create(
                 symbol: symbol,
-                company_name: unit.name,
+                company_name: unit.company_name,
                 price_per_share: price_per_share,
                 quantity: quantity,
                 amount: amount,
