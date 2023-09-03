@@ -198,7 +198,7 @@ export default function TraderInfoModal(props){
                                     ))}
                                 </ButtonGroup>
                             </InputGroup>
-                            <InputGroup className="d-flex flex-column gap-2">
+                            <InputGroup className="d-flex flex-column gap-2 mb-3">
                                 <h1 style={{fontSize: "1rem"}}>Signup Status</h1>
                                 <ButtonGroup>
                                     {signupStatuses.map((status, index) => (
