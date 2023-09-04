@@ -45,7 +45,7 @@ class TransactionsController < ApplicationController
         quantity = transaction_params[:quantity].to_f
         price_per_share = transaction_params[:price_per_share].to_f
 
-        transaction_type.to_sym == :BUY ? portfolio.buy_unit(symbol, quantity, price_per_share) : portfolio.sell_unit(symbol, quantity, price_per_share)
+        transaction_type.to_sym == :BUY ? portfolio.buy_unit(symbol, price_per_share, quantity) : portfolio.sell_unit(symbol, price_per_share, quantity)
         render_json_response(
                     data: { 
                         transaction_receipt: TransactionSerializer.new(transaction).serializable_hash[:data][:attributes],
