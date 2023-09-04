@@ -2,6 +2,7 @@ import "./style.css";
 import { Form, Button, FloatingLabel, Spinner } from 'react-bootstrap'
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo1 from "../../assets/img/logo-1.png"
 
 export default function SignUpPage(props){
   const { 
@@ -149,7 +150,7 @@ export default function SignUpPage(props){
             </div>
         </div>
         <div className="navbar">
-          <img className="logo" alt="Logo" src="/src/assets/img/logo-1.png" />
+          <img className="logo" alt="Logo" src={logo1} />
           <div className="text-wrapper-2">LEO TRADING</div>
           <div className="text-wrapper-3">Trade</div>
           <div className="text-wrapper-4">Learn</div>

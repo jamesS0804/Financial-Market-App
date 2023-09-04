@@ -2,6 +2,13 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import LoginPage from "../LoginPage";
+import logo1 from "../../assets/img/logo-1.png"
+import logo2 from "../../assets/img/logo-2.png"
+import logo3 from "../../assets/img/logo-3.png"
+import line1 from "../../assets/img/line-1.svg"
+import line2 from "../../assets/img/line-2.svg"
+import line3 from "../../assets/img/line-3.svg"
+import line4 from "../../assets/img/line-4.svg"
 
 export default function LandingPage(props) {
   const { 
@@ -22,7 +29,7 @@ export default function LandingPage(props) {
       <div className="overlap-wrapper">
         <div className="overlap">
           <div className="overlap-group">
-            <img className="logo" alt="Logo" src="/src/assets/img/logo-3.png" />
+            <img className="logo" alt="Logo" src={logo3} />
             <footer className="footer">
               <div className="div">
                 <div className="overlap-2">
@@ -30,26 +37,26 @@ export default function LandingPage(props) {
                   <div className="text-wrapper-2">LTR</div>
                   <div className="text-wrapper-3">24H</div>
                   <div className="text-wrapper-4">+90.80%</div>
-                  <img className="img" alt="Logo" src="/src/assets/img/logo-2.png" />
+                  <img className="img" alt="Logo" src={logo2}/>
                   <div className="text-wrapper-5">251.5291</div>
-                  <img className="line" alt="Line" src="/src/assets/img/line-2.svg" />
+                  <img className="line" alt="Line" src={line2} />
                 </div>
                 <div className="overlap-3">
                   <div className="text-wrapper">LTR</div>
                   <div className="text-wrapper-2">LTR</div>
                   <div className="text-wrapper-3">24H</div>
                   <div className="text-wrapper-6">+90.80%</div>
-                  <img className="img" alt="Logo" src="/src/assets/img/logo-2.png" />
+                  <img className="img" alt="Logo" src={logo2} />
                   <div className="text-wrapper-5">251.5291</div>
-                  <img className="line-2" alt="Line" src="/src/assets/img/line-3.svg" />
+                  <img className="line-2" alt="Line" src={line3} />
                 </div>
                 <div className="overlap-4">
                   <div className="text-wrapper">LTR</div>
                   <div className="text-wrapper-2">LTR</div>
                   <div className="text-wrapper-3">24H</div>
-                  <img className="img" alt="Logo" src="/src/assets/img/logo-2.png" />
+                  <img className="img" alt="Logo" src={logo2} />
                   <div className="text-wrapper-5">251.5291</div>
-                  <img className="line-3" alt="Line" src="/src/assets/img/line-1.svg" />
+                  <img className="line-3" alt="Line" src={line1} />
                   <div className="text-wrapper-6">+90.80%</div>
                 </div>
                 <div className="overlap-5">
@@ -58,8 +65,8 @@ export default function LandingPage(props) {
                   <div className="text-wrapper-3">24H</div>
                   <div className="text-wrapper-4">+90.80%</div>
                   <div className="text-wrapper-5">251.5291</div>
-                  <img className="line-4" alt="Line" src="/src/assets/img/line-4.svg" />
-                  <img className="img" alt="Logo" src="/src/assets/img/logo-2.png" />
+                  <img className="line-4" alt="Line" src={line4} />
+                  <img className="img" alt="Logo" src={logo2} />
                 </div>
               </div>
             </footer>
@@ -90,7 +97,7 @@ export default function LandingPage(props) {
             </div>
           </div>
           <div className="brand-name">
-            <img className="logo-2" alt="Logo" src="/src/assets/img/logo-1.png" />
+            <img className="logo-2" alt="Logo" src={logo1} />
             <div className="text-wrapper-10">LEO TRADING</div>
             <div className="text-wrapper-11">Trade</div>
             <div className="text-wrapper-12">Learn</div>
