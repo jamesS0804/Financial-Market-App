@@ -46,6 +46,7 @@ export default function Dashboard (props) {
                         currentUserData={currentUserData}
                         currentUserPortfolio={currentUserPortfolio}
                         setCurrentUserPortfolio={setCurrentUserPortfolio} 
+                        chosenSidebarOption={chosenSidebarOption}
                       />
       }
   }

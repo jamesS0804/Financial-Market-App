@@ -69,14 +69,14 @@ export default function StockModal(props){
                         market_order_type: 'MARKET',
                         transaction_type: marketStockData.transaction_type,
                         status: 'FILLED',
-                        symbol: 'AAPL',
+                        symbol: marketStockData.symbol,
                         quantity: quantity,
                         price_per_share: marketStockData.price_per_share
                     }
                 }
             )
             if(response.status === 200){
-                setAuthAlert({status: "SUCCESS", message: response.response.data.status.message})
+                setAuthAlert({status: "SUCCESS", message: response.data.status.message})
             } else {
                 setAuthAlert({status: "ERROR", message: response.response.data.status.message})
             }
