@@ -76,7 +76,7 @@ export default function StockModal(props){
                 }
             )
             if(response.status === 200){
-                console.log(response)
+                setAuthAlert({status: "SUCCESS", message: response.response.data.status.message})
             } else {
                 setAuthAlert({status: "ERROR", message: response.response.data.status.message})
             }
