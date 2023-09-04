@@ -69,7 +69,7 @@ RSpec.describe Portfolio, type: :model do
             quantity: 3,
             amount: 200
           )
-          default_portfolio.buy_unit(symbol, quantity, price_per_share)
+          default_portfolio.buy_unit(symbol, price_per_share, quantity)
 
           default_portfolio.reload
 
@@ -82,7 +82,7 @@ RSpec.describe Portfolio, type: :model do
       end
       context "when the portfolio doesn't exist in the portfolio_units" do
         it "should create a new portfolio unit with the price_per_share, quantity, and amount" do
-          default_portfolio.buy_unit(second_symbol, quantity, price_per_share)
+          default_portfolio.buy_unit(second_symbol, price_per_share, quantity)
 
           default_portfolio.reload
 
