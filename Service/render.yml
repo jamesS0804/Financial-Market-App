@@ -1,0 +1,7 @@
+app: Financial-Market-App-BE
+region: Singapore (Southeast Asia)
+branch: feature/backend
+service: web
+database: Service_production
+username: Service
+password: <%= ENV["SERVICE_DATABASE_PASSWORD"] %>
