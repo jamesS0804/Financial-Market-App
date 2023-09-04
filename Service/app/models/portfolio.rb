@@ -15,13 +15,13 @@ class Portfolio < ApplicationRecord
 
     def has_enough_unit?(symbol, quantity)
         portfolio_unit = portfolio_units.find_by(symbol: symbol)
-
-        return false if !portfolio_unit
-        
+        if !portfolio_unit
+            return false 
+        end
         portfolio_unit.quantity >= quantity.to_f 
     end
 
-    def buy_unit(symbol, quantity, price_per_share)
+    def buy_unit(symbol, price_per_share, quantity)
         amount = price_per_share* quantity
 
         existing_unit = portfolio_units.find_by(symbol: symbol)
@@ -52,12 +52,17 @@ class Portfolio < ApplicationRecord
         amount = price_per_share * quantity
 
         existing_unit = portfolio_units.find_by(symbol: symbol)
+        remaining_quantity = existing_unit.quantity - quantity
 
-        existing_unit.update(
-            price_per_share: price_per_share,
-            quantity: existing_unit.quantity - quantity,
-            amount: existing_unit.amount - amount,
-        )
+        if remaining_quantity == 0
+            existing_unit.destroy
+        else
+            existing_unit.update(
+                price_per_share: price_per_share,
+                quantity: remaining_quantity,
+                amount: existing_unit.amount - amount,
+            )
+        end
 
         update_portfolio(-amount)
     end
