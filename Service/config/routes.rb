@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get "trader/:user_id/portfolio" => "portfolio#get_portfolio"
   get "trader/:user_id/portfolio/transactions" => "portfolio#get_all_transactions"
+  get "trader/:user_id/portfolio/all_portfolio_units" => "portfolio#get_all_portfolio_units"
 
   post "portfolios/:portfolio_id/transactions/market_order/buy" => "transactions#process_market_order_buy"
   post "portfolios/:portfolio_id/transactions/market_order/sell" => "transactions#process_market_order_sell"
